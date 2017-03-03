@@ -19,6 +19,8 @@ _Alloc_type	stl_slist.h	/^  typedef simple_alloc<_Slist_node<_Tp>, _Alloc> _Allo
 _Alloc_type	stl_tree.h	/^          _Alloc_type;$/;"	t	class:_Rb_tree_alloc_base
 _Alloc_type	stl_tree.h	/^  typedef simple_alloc<_Rb_tree_node<_Tp>, _Alloc> _Alloc_type;$/;"	t	struct:_Rb_tree_base
 _Alloc_type	stl_vector.h	/^  typedef typename _Alloc_traits<_Tp, _Allocator>::_Alloc_type _Alloc_type;$/;"	t	class:_Vector_alloc_base
+_Alloc_type	string.h	/^  typedef simple_alloc<_Tp, _Alloc> _Alloc_type;$/;"	t	class:_String_base
+_Alloc_type	string.h	/^  typedef typename _Alloc_traits<_Tp, _Alloc>::_Alloc_type _Alloc_type;$/;"	t	class:_String_alloc_base
 _Allocator_concept_specification	concept_checks.h	/^struct _Allocator_concept_specification {$/;"	s
 _Allocator_requirement_violation	concept_checks.h	/^_Allocator_requirement_violation(_Alloc __a) {$/;"	f	struct:_Allocator_concept_specification
 _Assignable_concept_specification	concept_checks.h	/^struct _Assignable_concept_specification {$/;"	s
@@ -42,6 +44,8 @@ _Base	stl_tree.h	/^  typedef _Rb_tree<_Key, _Value, _KeyOfValue, _Compare, _Allo
 _Base	stl_tree.h	/^  typedef _Rb_tree_base<_Value, _Alloc> _Base;$/;"	t	class:_Rb_tree
 _Base	stl_vector.h	/^          _Base;$/;"	t	struct:_Vector_base
 _Base	stl_vector.h	/^  typedef _Vector_base<_Tp, _Alloc> _Base;$/;"	t	class:vector
+_Base	string.h	/^          _Base;$/;"	t	class:_String_base
+_Base	string.h	/^  typedef _String_base<_CharT,_Alloc> _Base;$/;"	t	class:basic_string
 _Base_ptr	stl_tree.h	/^  typedef _Rb_tree_node_base* _Base_ptr;$/;"	t	class:_Rb_tree
 _Base_ptr	stl_tree.h	/^  typedef _Rb_tree_node_base* _Base_ptr;$/;"	t	struct:_Rb_tree_node_base
 _Base_ptr	stl_tree.h	/^  typedef _Rb_tree_node_base::_Base_ptr _Base_ptr;$/;"	t	struct:_Rb_tree_base_iterator
@@ -186,13 +190,18 @@ _MAX_BYTES	stl_alloc.h	/^    enum {_MAX_BYTES = 128};$/;"	e	enum:__default_alloc
 _MAX_BYTES	stl_alloc.h	/^  enum {_MAX_BYTES = 128};$/;"	e	enum:__anon10
 _M_acquire_lock	stl_threads.h	/^  void _M_acquire_lock() {$/;"	f	struct:_STL_mutex_lock
 _M_allocate	stl_vector.h	/^  _Tp* _M_allocate(size_t __n)$/;"	f	class:_Vector_alloc_base
+_M_allocate	string.h	/^  _Tp* _M_allocate(size_t __n) { return _Alloc_type::allocate(__n); }$/;"	f	class:_String_base
+_M_allocate	string.h	/^  _Tp* _M_allocate(size_t __n)$/;"	f	class:_String_alloc_base
 _M_allocate_and_copy	stl_vector.h	/^  iterator _M_allocate_and_copy(size_type __n, _ForwardIterator __first, $/;"	f	class:vector
 _M_allocate_and_copy	stl_vector.h	/^  iterator _M_allocate_and_copy(size_type __n, const_iterator __first, $/;"	f	class:vector
+_M_allocate_block	string.h	/^  void _M_allocate_block(size_t __n) { $/;"	f	class:_String_base
 _M_allocate_buffer	stl_tempbuf.h	/^  void _M_allocate_buffer() {$/;"	f	class:_Temporary_buffer
 _M_allocate_map	stl_deque.h	/^  _Tp** _M_allocate_map(size_t __n) $/;"	f	class:_Deque_alloc_base
 _M_allocate_map	stl_deque.h	/^  _Tp** _M_allocate_map(size_t __n) $/;"	f	class:_Deque_base
 _M_allocate_node	stl_deque.h	/^  _Tp* _M_allocate_node() {$/;"	f	class:_Deque_alloc_base
 _M_allocate_node	stl_deque.h	/^  _Tp* _M_allocate_node()$/;"	f	class:_Deque_base
+_M_append_dispatch	string.h	/^  basic_string& _M_append_dispatch(_InputIter __f, _InputIter __l,$/;"	f	class:basic_string
+_M_append_dispatch	string.h	/^  basic_string& _M_append_dispatch(_Integer __n, _Integer __x, __true_type) {$/;"	f	class:basic_string
 _M_assign_aux	stl_bvector.h	/^  void _M_assign_aux(_ForwardIterator __first, _ForwardIterator __last,$/;"	f	class:__BVECTOR
 _M_assign_aux	stl_bvector.h	/^  void _M_assign_aux(_InputIterator __first, _InputIterator __last,$/;"	f	class:__BVECTOR
 _M_assign_aux	stl_deque.h	/^  ::_M_assign_aux(_InputIter __first, _InputIter __last, input_iterator_tag)$/;"	f	class:deque
@@ -209,6 +218,8 @@ _M_assign_dispatch	stl_slist.h	/^  void _M_assign_dispatch(_Integer __n, _Intege
 _M_assign_dispatch	stl_slist.h	/^slist<_Tp, _Alloc>::_M_assign_dispatch(_InputIter __first, _InputIter __last,$/;"	f	class:slist
 _M_assign_dispatch	stl_vector.h	/^  void _M_assign_dispatch(_InputIter __first, _InputIter __last, __false_type)$/;"	f	class:vector
 _M_assign_dispatch	stl_vector.h	/^  void _M_assign_dispatch(_Integer __n, _Integer __val, __true_type)$/;"	f	class:vector
+_M_assign_dispatch	string.h	/^  ::_M_assign_dispatch(_InputIter __f, _InputIter __l, __false_type)$/;"	f	class:basic_string
+_M_assign_dispatch	string.h	/^  basic_string& _M_assign_dispatch(_Integer __n, _Integer __x, __true_type) {$/;"	f	class:basic_string
 _M_base	stl_rope.h	/^    _Rope_RopeRep<_CharT,_Alloc>* _M_base;      \/\/ not 0$/;"	m	struct:_Rope_RopeSubstring
 _M_bit_alloc	stl_bvector.h	/^  unsigned int* _M_bit_alloc(size_t __n) $/;"	f	class:_Bvector_alloc_base
 _M_bit_alloc	stl_bvector.h	/^  unsigned int* _M_bit_alloc(size_t __n) $/;"	f	class:_Bvector_base
@@ -234,7 +245,11 @@ _M_check	ropeimpl.h	/^void _Rope_iterator<_CharT,_Alloc>::_M_check() {$/;"	f	cla
 _M_client_data	stl_alloc.h	/^        char _M_client_data[1];    \/* The client sees this.        *\/$/;"	m	union:__default_alloc_template::_Obj
 _M_clone_node	stl_tree.h	/^  _Link_type _M_clone_node(_Link_type __x)$/;"	f	class:_Rb_tree
 _M_color	stl_tree.h	/^  _Color_type _M_color; $/;"	m	struct:_Rb_tree_node_base
+_M_compare	string.h	/^  static int _M_compare(const _CharT* __f1, const _CharT* __l1,$/;"	f	class:basic_string
+_M_construct_null	string.h	/^  void _M_construct_null(_CharT* __p) {$/;"	f	class:basic_string
 _M_copy	stl_tree.h	/^  ::_M_copy(_Link_type __x, _Link_type __p)$/;"	f	class:_Rb_tree
+_M_copy	string.h	/^  _M_copy(_InputIterator __first, _InputIterator __last, iterator __result) {$/;"	f	class:basic_string
+_M_copy	string.h	/^  _M_copy(const _CharT* __first, const _CharT* __last, _CharT* __result) {$/;"	f	class:basic_string
 _M_copy_from	stl_hashtable.h	/^  ::_M_copy_from(const hashtable& __ht)$/;"	f	class:hashtable
 _M_count	ropeimpl.h	/^	size_t _M_count;  \/\/ Number of nonmatching characters$/;"	m	class:_Rope_find_char_char_consumer
 _M_create_node	stl_list.h	/^  _Node* _M_create_node()$/;"	f	class:list
@@ -256,9 +271,14 @@ _M_data_allocator	stl_bvector.h	/^          _M_data_allocator;$/;"	m	class:_Bvec
 _M_data_allocator	stl_rope.h	/^    allocator_type _M_data_allocator;$/;"	m	class:_Rope_alloc_base
 _M_data_allocator	stl_rope.h	/^    allocator_type _M_data_allocator;$/;"	m	class:_Rope_rep_alloc_base
 _M_data_allocator	stl_vector.h	/^  allocator_type _M_data_allocator;$/;"	m	class:_Vector_alloc_base
+_M_data_allocator	string.h	/^  allocator_type _M_data_allocator;$/;"	m	class:_String_alloc_base
 _M_deallocate	stl_bvector.h	/^  void _M_deallocate() {$/;"	f	class:_Bvector_alloc_base
 _M_deallocate	stl_bvector.h	/^  void _M_deallocate() {$/;"	f	class:_Bvector_base
 _M_deallocate	stl_vector.h	/^  void _M_deallocate(_Tp* __p, size_t __n)$/;"	f	class:_Vector_alloc_base
+_M_deallocate	string.h	/^  void _M_deallocate(_Tp* __p, size_t __n) {$/;"	f	class:_String_alloc_base
+_M_deallocate	string.h	/^  void _M_deallocate(_Tp* __p, size_t __n) {$/;"	f	class:_String_base
+_M_deallocate	string.h	/^  void _M_deallocate(_Tp* __p, size_t __n)$/;"	f	class:_String_alloc_base
+_M_deallocate_block	string.h	/^  void _M_deallocate_block() $/;"	f	class:_String_base
 _M_deallocate_map	stl_deque.h	/^  void _M_deallocate_map(_Tp** __p, size_t __n) $/;"	f	class:_Deque_alloc_base
 _M_deallocate_map	stl_deque.h	/^  void _M_deallocate_map(_Tp** __p, size_t __n) $/;"	f	class:_Deque_base
 _M_deallocate_node	stl_deque.h	/^  void _M_deallocate_node(_Tp* __p) {$/;"	f	class:_Deque_alloc_base
@@ -280,6 +300,8 @@ _M_end_marker	stl_iterator.h	/^  bool _M_end_marker;$/;"	m	class:istream_iterato
 _M_end_of_storage	stl_bvector.h	/^  unsigned int* _M_end_of_storage;  $/;"	m	class:_Bvector_base
 _M_end_of_storage	stl_bvector.h	/^  unsigned int* _M_end_of_storage;$/;"	m	class:_Bvector_alloc_base
 _M_end_of_storage	stl_vector.h	/^  _Tp* _M_end_of_storage;$/;"	m	class:_Vector_alloc_base
+_M_end_of_storage	string.h	/^  _Tp* _M_end_of_storage;$/;"	m	class:_String_alloc_base
+_M_end_of_storage	string.h	/^  _Tp* _M_end_of_storage;$/;"	m	class:_String_base
 _M_equal	stl_iterator.h	/^  bool _M_equal(const istream_iterator& __x) const$/;"	f	class:istream_iterator
 _M_equal_aux	stl_iterator.h	/^  ::_M_equal_aux(const istreambuf_iterator& __i) const$/;"	f	class:istreambuf_iterator
 _M_equals	stl_hashtable.h	/^  key_equal             _M_equals;$/;"	m	class:hashtable
@@ -318,7 +340,10 @@ _M_finish	stl_bvector.h	/^  _Bit_iterator _M_finish;$/;"	m	class:_Bvector_alloc_
 _M_finish	stl_bvector.h	/^  _Bit_iterator _M_finish;$/;"	m	class:_Bvector_base
 _M_finish	stl_deque.h	/^  iterator _M_finish;$/;"	m	class:_Deque_base
 _M_finish	stl_vector.h	/^  _Tp* _M_finish;$/;"	m	class:_Vector_alloc_base
+_M_finish	string.h	/^  _Tp* _M_finish;$/;"	m	class:_String_alloc_base
+_M_finish	string.h	/^  _Tp* _M_finish;$/;"	m	class:_String_base
 _M_first	stl_deque.h	/^  _Tp* _M_first;$/;"	m	struct:_Deque_iterator
+_M_first	string.h	/^  const _Pointer _M_first;$/;"	m	struct:_Not_within_traits
 _M_fn	stl_rope.h	/^    char_producer<_CharT>* _M_fn;$/;"	m	struct:_Rope_RopeFunction
 _M_fn1	stl_function.h	/^  _Operation1 _M_fn1;$/;"	m	class:binary_compose
 _M_fn1	stl_function.h	/^  _Operation1 _M_fn1;$/;"	m	class:unary_compose
@@ -377,6 +402,8 @@ _M_initialize_dispatch	stl_bvector.h	/^  void _M_initialize_dispatch(_InputItera
 _M_initialize_dispatch	stl_bvector.h	/^  void _M_initialize_dispatch(_Integer __n, _Integer __x, __true_type) {$/;"	f	class:__BVECTOR
 _M_initialize_dispatch	stl_deque.h	/^  void _M_initialize_dispatch(_InputIter __first, _InputIter __last,$/;"	f	class:deque
 _M_initialize_dispatch	stl_deque.h	/^  void _M_initialize_dispatch(_Integer __n, _Integer __x, __true_type) {$/;"	f	class:deque
+_M_initialize_dispatch	string.h	/^  void _M_initialize_dispatch(_InputIter __f, _InputIter __l, __false_type) {$/;"	f	class:basic_string
+_M_initialize_dispatch	string.h	/^  void _M_initialize_dispatch(_Integer __n, _Integer __x, __true_type) {$/;"	f	class:basic_string
 _M_initialize_map	stl_deque.h	/^_Deque_base<_Tp,_Alloc>::_M_initialize_map(size_t __num_elements)$/;"	f	class:_Deque_base
 _M_initialize_range	stl_bvector.h	/^  void _M_initialize_range(_ForwardIterator __first, _ForwardIterator __last,$/;"	f	class:__BVECTOR
 _M_initialize_range	stl_bvector.h	/^  void _M_initialize_range(_InputIterator __first, _InputIterator __last,$/;"	f	class:__BVECTOR
@@ -393,6 +420,7 @@ _M_insert_aux	stl_deque.h	/^deque<_Tp,_Alloc>::_M_insert_aux(iterator __pos, con
 _M_insert_aux	stl_deque.h	/^void deque<_Tp,_Alloc>::_M_insert_aux(iterator __pos,$/;"	f	class:deque
 _M_insert_aux	stl_vector.h	/^vector<_Tp, _Alloc>::_M_insert_aux(iterator __position)$/;"	f	class:vector
 _M_insert_aux	stl_vector.h	/^vector<_Tp, _Alloc>::_M_insert_aux(iterator __position, const _Tp& __x)$/;"	f	class:vector
+_M_insert_aux	string.h	/^  ::_M_insert_aux(basic_string<_CharT,_Traits,_Alloc>::iterator __p,$/;"	f	class:basic_string
 _M_insert_dispatch	stl_bvector.h	/^  void _M_insert_dispatch(iterator __pos, _Integer __n, _Integer __x,$/;"	f	class:__BVECTOR
 _M_insert_dispatch	stl_bvector.h	/^  void _M_insert_dispatch(iterator __pos,$/;"	f	class:__BVECTOR
 _M_insert_dispatch	stl_deque.h	/^  void _M_insert_dispatch(iterator __pos, _Integer __n, _Integer __x,$/;"	f	class:deque
@@ -401,12 +429,15 @@ _M_insert_dispatch	stl_list.h	/^  void _M_insert_dispatch(iterator __pos, _Integ
 _M_insert_dispatch	stl_list.h	/^list<_Tp, _Alloc>::_M_insert_dispatch(iterator __position,$/;"	f	class:list
 _M_insert_dispatch	stl_vector.h	/^  void _M_insert_dispatch(iterator __pos, _Integer __n, _Integer __val,$/;"	f	class:vector
 _M_insert_dispatch	stl_vector.h	/^  void _M_insert_dispatch(iterator __pos,$/;"	f	class:vector
+_M_insert_dispatch	string.h	/^  void _M_insert_dispatch(iterator __p, _InputIter __first, _InputIter __last,$/;"	f	class:basic_string
+_M_insert_dispatch	string.h	/^  void _M_insert_dispatch(iterator __p, _Integer __n, _Integer __x,$/;"	f	class:basic_string
 _M_insert_range	stl_bvector.h	/^  void _M_insert_range(iterator __pos,$/;"	f	class:__BVECTOR
 _M_insert_range	stl_bvector.h	/^  void _M_insert_range(iterator __position,$/;"	f	class:__BVECTOR
 _M_is_balanced	stl_rope.h	/^    bool _M_is_balanced:8;$/;"	m	struct:_Rope_RopeRep
 _M_iter	stl_raw_storage_iter.h	/^  _ForwardIterator _M_iter;$/;"	m	class:raw_storage_iterator
 _M_key_compare	stl_tree.h	/^  _Compare _M_key_compare;$/;"	m	class:_Rb_tree
 _M_last	stl_deque.h	/^  _Tp* _M_last;$/;"	m	struct:_Deque_iterator
+_M_last	string.h	/^  const _Pointer _M_last;$/;"	m	struct:_Not_within_traits
 _M_leaf_index	stl_rope.h	/^    int _M_leaf_index;     \/\/ Last valid __pos in path_end;$/;"	m	class:_Rope_iterator_base
 _M_leaf_pos	stl_rope.h	/^    size_t _M_leaf_pos;    \/\/ Starting position for current leaf$/;"	m	class:_Rope_iterator_base
 _M_left	stl_rope.h	/^    _Rope_RopeRep<_CharT,_Alloc>* _M_left;$/;"	m	struct:_Rope_RopeConcatenation
@@ -441,6 +472,7 @@ _M_node_allocator	stl_slist.h	/^           _M_node_allocator;$/;"	m	class:_Slist
 _M_node_allocator	stl_tree.h	/^           _M_node_allocator;$/;"	m	class:_Rb_tree_alloc_base
 _M_node_allocator_type	stl_hashtable.h	/^  typedef simple_alloc<_Node, _Alloc> _M_node_allocator_type;$/;"	t	class:hashtable
 _M_node_count	stl_tree.h	/^  size_type _M_node_count; \/\/ keeps track of size of tree$/;"	m	class:_Rb_tree
+_M_null	string.h	/^  static _CharT _M_null() {$/;"	f	class:basic_string
 _M_num_elements	stl_hashtable.h	/^  size_type             _M_num_elements;$/;"	m	class:hashtable
 _M_o	ropeimpl.h	/^	_Insert_ostream& _M_o;$/;"	m	class:_Rope_insert_char_consumer
 _M_offset	stl_bvector.h	/^  unsigned int _M_offset;$/;"	m	struct:_Bit_iterator_base
@@ -487,6 +519,10 @@ _M_range_initialize	stl_deque.h	/^void deque<_Tp,_Alloc>::_M_range_initialize(_F
 _M_range_initialize	stl_deque.h	/^void deque<_Tp,_Alloc>::_M_range_initialize(_InputIterator __first,$/;"	f	class:deque
 _M_range_initialize	stl_vector.h	/^  void _M_range_initialize(_ForwardIterator __first,$/;"	f	class:vector
 _M_range_initialize	stl_vector.h	/^  void _M_range_initialize(_InputIterator __first,  $/;"	f	class:vector
+_M_range_initialize	string.h	/^  void _M_range_initialize(_ForwardIter __f, _ForwardIter __l, $/;"	f	class:basic_string
+_M_range_initialize	string.h	/^  void _M_range_initialize(_InputIter __f, _InputIter __l) {$/;"	f	class:basic_string
+_M_range_initialize	string.h	/^  void _M_range_initialize(_InputIter __f, _InputIter __l,$/;"	f	class:basic_string
+_M_range_initialize	string.h	/^  void _M_range_initialize(const _CharT* __f, const _CharT* __l) {$/;"	f	class:basic_string
 _M_range_insert	stl_vector.h	/^vector<_Tp, _Alloc>::_M_range_insert(iterator __pos, $/;"	f	class:vector
 _M_range_insert	stl_vector.h	/^vector<_Tp, _Alloc>::_M_range_insert(iterator __position,$/;"	f	class:vector
 _M_read	stl_iterator.h	/^  void _M_read() {$/;"	f	class:istream_iterator
@@ -497,6 +533,7 @@ _M_ref_count_lock	stl_threads.h	/^  pthread_mutex_t _M_ref_count_lock;$/;"	m	str
 _M_ref_nonnil	stl_rope.h	/^          void _M_ref_nonnil() {}$/;"	f	struct:_Rope_RopeRep
 _M_ref_nonnil	stl_rope.h	/^          void _M_ref_nonnil()$/;"	f	struct:_Rope_RopeRep
 _M_release_lock	stl_threads.h	/^  void _M_release_lock() {$/;"	f	struct:_STL_mutex_lock
+_M_replace_dispatch	string.h	/^  basic_string& _M_replace_dispatch(iterator __first, iterator __last,$/;"	f	class:basic_string
 _M_reserve_elements_at_back	stl_deque.h	/^  iterator _M_reserve_elements_at_back(size_type __n) {$/;"	f	class:deque
 _M_reserve_elements_at_front	stl_deque.h	/^  iterator _M_reserve_elements_at_front(size_type __n) {$/;"	f	class:deque
 _M_reserve_map_at_back	stl_deque.h	/^  void _M_reserve_map_at_back (size_type __nodes_to_add = 1) {$/;"	f	class:deque
@@ -518,6 +555,8 @@ _M_start	stl_bvector.h	/^  _Bit_iterator _M_start;$/;"	m	class:_Bvector_base
 _M_start	stl_deque.h	/^  iterator _M_start;$/;"	m	class:_Deque_base
 _M_start	stl_rope.h	/^    size_t _M_start;$/;"	m	struct:_Rope_RopeSubstring
 _M_start	stl_vector.h	/^  _Tp* _M_start;$/;"	m	class:_Vector_alloc_base
+_M_start	string.h	/^  _Tp* _M_start;$/;"	m	class:_String_alloc_base
+_M_start	string.h	/^  _Tp* _M_start;$/;"	m	class:_String_base
 _M_stream	stl_iterator.h	/^  istream* _M_stream;$/;"	m	class:istream_iterator
 _M_stream	stl_iterator.h	/^  istream_type* _M_stream;$/;"	m	class:istream_iterator
 _M_stream	stl_iterator.h	/^  ostream* _M_stream;$/;"	m	class:ostream_iterator
@@ -530,6 +569,9 @@ _M_t	stl_multiset.h	/^  _Rep_type _M_t;  \/\/ red-black tree representing multis
 _M_t	stl_set.h	/^  _Rep_type _M_t;  \/\/ red-black tree representing set$/;"	m	class:set
 _M_table	stl_function.h	/^  unsigned int _M_table[55];$/;"	m	class:subtractive_rng
 _M_tag	stl_rope.h	/^    _Tag _M_tag:8;$/;"	m	struct:_Rope_RopeRep
+_M_terminate_string	string.h	/^  void _M_terminate_string() {$/;"	f	class:basic_string
+_M_throw_length_error	string.h	/^void _String_base<_Tp,_Alloc>::_M_throw_length_error() const {$/;"	f	class:_String_base
+_M_throw_out_of_range	string.h	/^void _String_base<_Tp, _Alloc>::_M_throw_out_of_range() const {$/;"	f	class:_String_base
 _M_tmp_buf	stl_rope.h	/^    _CharT _M_tmp_buf[_S_iterator_buf_len];$/;"	m	class:_Rope_iterator_base
 _M_tree_ptr	stl_rope.h	/^    _RopeRep *_M_tree_ptr;$/;"	m	class:_Rope_alloc_base
 _M_tree_ptr	stl_rope.h	/^    _RopeRep* _M_tree_ptr;$/;"	m	class:_Rope_alloc_base
@@ -571,9 +613,12 @@ _Node_alloc_type	stl_deque.h	/^  typedef simple_alloc<_Tp, _Alloc>  _Node_alloc_
 _Node_alloc_type	stl_deque.h	/^  typedef typename _Alloc_traits<_Tp, _Alloc>::_Alloc_type _Node_alloc_type;$/;"	t	class:_Deque_alloc_base
 _Node_allocator	stl_list.h	/^           _Node_allocator;$/;"	m	class:_List_alloc_base
 _Node_base	stl_slist.h	/^  typedef _Slist_node_base      _Node_base;$/;"	t	class:slist
+_Not_within_traits	string.h	/^  _Not_within_traits(_Pointer __f, _Pointer __l) $/;"	f	struct:_Not_within_traits
+_Not_within_traits	string.h	/^struct _Not_within_traits$/;"	s
 _Obj	stl_alloc.h	/^  union _Obj {$/;"	u	class:__default_alloc_template
 _OutputIterator_concept_specification	concept_checks.h	/^struct _OutputIterator_concept_specification {$/;"	s
 _OutputIterator_requirement_violation	concept_checks.h	/^_OutputIterator_requirement_violation(_OutputIterator __i) {$/;"	f	struct:_OutputIterator_concept_specification
+_Pointer	string.h	/^  typedef const typename _Traits::char_type* _Pointer;$/;"	t	struct:_Not_within_traits
 _Project1st	stl_function.h	/^struct _Project1st : public binary_function<_Arg1, _Arg2, _Arg1> {$/;"	s
 _Project2nd	stl_function.h	/^struct _Project2nd : public binary_function<_Arg1, _Arg2, _Arg2> {$/;"	s
 _RC_t	stl_threads.h	/^  typedef long _RC_t;$/;"	t	struct:_Refcount_Base
@@ -614,6 +659,7 @@ _Rep_type	stl_map.h	/^                   _Select1st<value_type>, key_compare, _A
 _Rep_type	stl_multimap.h	/^                  _Select1st<value_type>, key_compare, _Alloc> _Rep_type;$/;"	t	class:multimap
 _Rep_type	stl_multiset.h	/^                  _Identity<value_type>, key_compare, _Alloc> _Rep_type;$/;"	t	class:multiset
 _Rep_type	stl_set.h	/^                  _Identity<value_type>, key_compare, _Alloc> _Rep_type;$/;"	t	class:set
+_Reserve_t	string.h	/^  struct _Reserve_t {};$/;"	s	class:basic_string
 _Ret	stl_function.h	/^  explicit const_mem_fun1_ref_t(_Ret (_Tp::*__pf)(_Arg) const) : _M_f(__pf) {}$/;"	f	class:const_mem_fun1_ref_t
 _Ret	stl_function.h	/^  explicit const_mem_fun1_t(_Ret (_Tp::*__pf)(_Arg) const) : _M_f(__pf) {}$/;"	f	class:const_mem_fun1_t
 _Ret	stl_function.h	/^  explicit const_mem_fun_ref_t(_Ret (_Tp::*__pf)() const) : _M_f(__pf) {}$/;"	f	class:const_mem_fun_ref_t
@@ -832,6 +878,7 @@ _S_setcache	ropeimpl.h	/^void _Rope_iterator_base<_CharT,_Alloc>::_S_setcache$/;
 _S_setcache_for_incr	ropeimpl.h	/^void _Rope_iterator_base<_CharT,_Alloc>::_S_setcache_for_incr$/;"	f	class:_Rope_iterator_base
 _S_start_free	stl_alloc.h	/^  static char* _S_start_free;$/;"	m	class:__default_alloc_template
 _S_start_free	stl_alloc.h	/^char* __default_alloc_template<__threads, __inst>::_S_start_free = 0;$/;"	m	class:__default_alloc_template
+_S_string_copy	string.h	/^void _S_string_copy(const basic_string<_CharT,_Traits,_Alloc>& __s,$/;"	f
 _S_substring	ropeimpl.h	/^rope<_CharT,_Alloc>::_S_substring(_RopeRep* __base, $/;"	f	class:rope
 _S_substringfn	stl_rope.h	/^    enum _Tag {_S_leaf, _S_concat, _S_substringfn, _S_function};$/;"	e	enum:_Rope_RopeRep::_Tag
 _S_swap_lock	stl_threads.h	/^        static mutex_t _S_swap_lock;$/;"	m	struct:_Swap_lock_struct
@@ -879,6 +926,16 @@ _Slist_iterator_base	stl_slist.h	/^  _Slist_iterator_base(_Slist_node_base* __x)
 _Slist_iterator_base	stl_slist.h	/^struct _Slist_iterator_base$/;"	s
 _Slist_node	stl_slist.h	/^struct _Slist_node : public _Slist_node_base$/;"	s
 _Slist_node_base	stl_slist.h	/^struct _Slist_node_base$/;"	s
+_String_alloc_base	string.h	/^  _String_alloc_base(const allocator_type& __a)$/;"	f	class:_String_alloc_base
+_String_alloc_base	string.h	/^  _String_alloc_base(const allocator_type&)$/;"	f	class:_String_alloc_base
+_String_alloc_base	string.h	/^class _String_alloc_base {$/;"	c
+_String_alloc_base	string.h	/^class _String_alloc_base<_Tp,_Alloc,true> {$/;"	c
+_String_base	string.h	/^  _String_base(const allocator_type& __a) : _Base(__a) { }$/;"	f	class:_String_base
+_String_base	string.h	/^  _String_base(const allocator_type& __a, size_t __n) : _Base(__a)$/;"	f	class:_String_base
+_String_base	string.h	/^  _String_base(const allocator_type&)$/;"	f	class:_String_base
+_String_base	string.h	/^  _String_base(const allocator_type&, size_t __n)$/;"	f	class:_String_base
+_String_base	string.h	/^class _String_base $/;"	c
+_String_base	string.h	/^template <class _Tp, class _Alloc> class _String_base {$/;"	c
 _Swap_lock_struct	stl_threads.h	/^    struct _Swap_lock_struct {$/;"	s
 _Tag	stl_rope.h	/^    enum _Tag {_S_leaf, _S_concat, _S_substringfn, _S_function};$/;"	g	struct:_Rope_RopeRep
 _Temporary_buffer	stl_tempbuf.h	/^  _Temporary_buffer(_ForwardIterator __first, _ForwardIterator __last) {$/;"	f	class:_Temporary_buffer
@@ -981,6 +1038,7 @@ __SGI_STL_ROPE_H	rope.h	/^#define __SGI_STL_ROPE_H$/;"	d
 __SGI_STL_SET_H	set.h	/^#define __SGI_STL_SET_H$/;"	d
 __SGI_STL_SLIST_H	slist.h	/^#define __SGI_STL_SLIST_H$/;"	d
 __SGI_STL_STACK_H	stack.h	/^#define __SGI_STL_STACK_H$/;"	d
+__SGI_STL_STRING	string.h	/^#define __SGI_STL_STRING$/;"	d
 __SGI_STL_STRING_FWD_H	stl_string_fwd.h	/^#define __SGI_STL_STRING_FWD_H$/;"	d
 __SGI_STL_TEMPBUF_H	tempbuf.h	/^#define __SGI_STL_TEMPBUF_H$/;"	d
 __SGI_STL_TREE_H	tree.h	/^#define __SGI_STL_TREE_H$/;"	d
@@ -1200,6 +1258,7 @@ __front_function_requirement_violation	sequence_concepts.h	/^  __front_function_
 __gcd	stl_algo.h	/^_EuclideanRingElement __gcd(_EuclideanRingElement __m,$/;"	f
 __generator_requirement_violation	concept_checks.h	/^  static _Ret __generator_requirement_violation(_Func& __f) {$/;"	f	struct:_STL_GENERATOR_ERROR
 __generator_requirement_violation	concept_checks.h	/^  static void __generator_requirement_violation(_Func& __f) {$/;"	f	struct:_STL_GENERATOR_ERROR
+__get_c_string	string.h	/^inline const char* __get_c_string(const string& __s) { return __s.c_str(); }$/;"	f
 __get_temporary_buffer	stl_tempbuf.h	/^__get_temporary_buffer(ptrdiff_t __len, _Tp*)$/;"	f
 __high_max	stl_threads.h	/^  enum { __low_max = 30, __high_max = 1000 };$/;"	e	enum:_STL_mutex_spin::__anon23
 __inplace_merge_aux	stl_algo.h	/^inline void __inplace_merge_aux(_BidirectionalIter __first,$/;"	f
@@ -1290,6 +1349,7 @@ __rotate	stl_algo.h	/^_ForwardIter __rotate(_ForwardIter __first,$/;"	f
 __rotate	stl_algo.h	/^_RandomAccessIter __rotate(_RandomAccessIter __first,$/;"	f
 __rotate_adaptive	stl_algo.h	/^_BidirectionalIter1 __rotate_adaptive(_BidirectionalIter1 __first,$/;"	f
 __set_malloc_handler	stl_alloc.h	/^  static void (* __set_malloc_handler(void (*__f)()))()$/;"	f	class:__malloc_alloc_template
+__sgi_string_fill	string.h	/^__sgi_string_fill(basic_ostream<_CharT, _Traits>& __os,$/;"	f
 __sink_unused_warning	concept_checks.h	/^void __sink_unused_warning(_Type) { }$/;"	f
 __size_function_must_be_const	container_concepts.h	/^  __size_function_must_be_const(const _Container& __c) {$/;"	f	struct:_ERROR_IN_STL_CONTAINER
 __size_function_requirement_violation	container_concepts.h	/^  __size_function_requirement_violation(_Container& __c) {$/;"	f	struct:_ERROR_IN_STL_CONTAINER
@@ -1310,6 +1370,7 @@ __stl_hash_string	stl_hash_fun.h	/^inline size_t __stl_hash_string(const char* _
 __stl_next_prime	stl_hashtable.h	/^inline unsigned long __stl_next_prime(unsigned long __n)$/;"	f
 __stl_num_primes	stl_hashtable.h	/^enum { __stl_num_primes = 28 };$/;"	e	enum:__anon17
 __stl_prime_list	stl_hashtable.h	/^static const unsigned long __stl_prime_list[__stl_num_primes] =$/;"	v
+__stl_string_hash	string.h	/^size_t __stl_string_hash(const basic_string<_CharT,_Traits,_Alloc>& __s) {$/;"	f
 __stl_threshold	stl_algo.h	/^const int __stl_threshold = 16;$/;"	v
 __swap_function_requirement_violation	container_concepts.h	/^  __swap_function_requirement_violation(_Container& __c) {$/;"	f	struct:_ERROR_IN_STL_CONTAINER
 __test_and_set	stl_threads.h	/^#  define __test_and_set(/;"	d
@@ -1440,6 +1501,10 @@ allocator_type	stl_tree.h	/^  typedef typename _Base::allocator_type allocator_t
 allocator_type	stl_vector.h	/^          allocator_type;$/;"	t	class:_Vector_alloc_base
 allocator_type	stl_vector.h	/^  typedef typename _Base::allocator_type allocator_type;$/;"	t	class:vector
 allocator_type	stl_vector.h	/^  typedef typename _Base::allocator_type allocator_type;$/;"	t	struct:_Vector_base
+allocator_type	string.h	/^  typedef _Alloc allocator_type;$/;"	t	class:_String_base
+allocator_type	string.h	/^  typedef typename _Alloc_traits<_Tp, _Alloc>::allocator_type allocator_type;$/;"	t	class:_String_alloc_base
+allocator_type	string.h	/^  typedef typename _Base::allocator_type allocator_type;$/;"	t	class:_String_base
+allocator_type	string.h	/^  typedef typename _Base::allocator_type allocator_type;$/;"	t	class:basic_string
 append	stl_rope.h	/^        rope& append() { return append(_CharT()); }  \/\/ XXX why?$/;"	f	class:rope
 append	stl_rope.h	/^        rope& append(_CharT __c) {$/;"	f	class:rope
 append	stl_rope.h	/^        rope& append(const _CharT* __c_string) {$/;"	f	class:rope
@@ -1449,6 +1514,15 @@ append	stl_rope.h	/^        rope& append(const rope& __y) {$/;"	f	class:rope
 append	stl_rope.h	/^        rope& append(const_iterator __s, const_iterator __e) {$/;"	f	class:rope
 append	stl_rope.h	/^        rope& append(size_t __n, _CharT __c) {$/;"	f	class:rope
 append	stl_rope.h	/^        void append(value_type* __s, size_t __len)$/;"	f	class:sequence_buffer
+append	string.h	/^  basic_string& append(_InputIter __first, _InputIter __last) {$/;"	f	class:basic_string
+append	string.h	/^  basic_string& append(const _CharT* __s) $/;"	f	class:basic_string
+append	string.h	/^  basic_string& append(const _CharT* __s, size_type __n) $/;"	f	class:basic_string
+append	string.h	/^  basic_string& append(const basic_string& __s) $/;"	f	class:basic_string
+append	string.h	/^  basic_string& append(const basic_string& __s,$/;"	f	class:basic_string
+append	string.h	/^basic_string<_CharT,_Traits,_Alloc>::append(size_type __n, _CharT __c) {$/;"	f	class:basic_string
+append	string.h	/^basic_string<_Tp, _Traits, _Alloc>::append(_ForwardIter __first, $/;"	f	class:basic_string
+append	string.h	/^basic_string<_Tp, _Traits, _Alloc>::append(_InputIterator __first, $/;"	f	class:basic_string
+append	string.h	/^basic_string<_Tp, _Traits, _Alloc>::append(const _Tp* __first,$/;"	f	class:basic_string
 apply_to_pieces	stl_rope.h	/^        void apply_to_pieces( size_t __begin, size_t __end,$/;"	f	class:rope
 argument_type	stl_function.h	/^  typedef _Arg argument_type;$/;"	t	struct:unary_function
 argument_type	stl_function.h	/^  typedef _Argument argument_type;$/;"	t	struct:_Constant_unary_fun
@@ -1466,6 +1540,13 @@ assign	stl_slist.h	/^  void assign(_InputIterator __first, _InputIterator __last
 assign	stl_slist.h	/^  void assign(size_type __n, const _Tp& __val)$/;"	f	class:slist
 assign	stl_vector.h	/^  void assign(_InputIterator __first, _InputIterator __last) {$/;"	f	class:vector
 assign	stl_vector.h	/^  void assign(size_type __n, const _Tp& __val) { _M_fill_assign(__n, __val); }$/;"	f	class:vector
+assign	string.h	/^  basic_string& assign(_InputIter __first, _InputIter __last) {$/;"	f	class:basic_string
+assign	string.h	/^  basic_string& assign(const _CharT* __s)$/;"	f	class:basic_string
+assign	string.h	/^  basic_string& assign(const _CharT* __s, size_type __n)$/;"	f	class:basic_string
+assign	string.h	/^  basic_string& assign(const basic_string& __s) $/;"	f	class:basic_string
+assign	string.h	/^  basic_string& assign(const basic_string& __s, $/;"	f	class:basic_string
+assign	string.h	/^basic_string<_CharT,_Traits,_Alloc>::assign(const _CharT* __f, $/;"	f	class:basic_string
+assign	string.h	/^basic_string<_CharT,_Traits,_Alloc>::assign(size_type __n, _CharT __c) {$/;"	f	class:basic_string
 at	stl_bvector.h	/^  const_reference at(size_type __n) const$/;"	f	class:__BVECTOR
 at	stl_bvector.h	/^  reference at(size_type __n)$/;"	f	class:__BVECTOR
 at	stl_deque.h	/^  const_reference at(size_type __n) const$/;"	f	class:deque
@@ -1474,6 +1555,8 @@ at	stl_rope.h	/^            reference at(size_type __pos) {$/;"	f	class:rope
 at	stl_rope.h	/^        _CharT at(size_type __pos) const {$/;"	f	class:rope
 at	stl_vector.h	/^  const_reference at(size_type __n) const$/;"	f	class:vector
 at	stl_vector.h	/^  reference at(size_type __n)$/;"	f	class:vector
+at	string.h	/^  const_reference at(size_type __n) const {$/;"	f	class:basic_string
+at	string.h	/^  reference at(size_type __n) {$/;"	f	class:basic_string
 back	stl_bvector.h	/^  const_reference back() const { return *(end() - 1); }$/;"	f	class:__BVECTOR
 back	stl_bvector.h	/^  reference back() { return *(end() - 1); }$/;"	f	class:__BVECTOR
 back	stl_deque.h	/^  const_reference back() const {$/;"	f	class:deque
@@ -1492,6 +1575,16 @@ balance	stl_rope.h	/^        void balance()$/;"	f	class:rope
 base	stl_iterator.h	/^  _BidirectionalIterator base() const { return current; }$/;"	f	class:reverse_bidirectional_iterator
 base	stl_iterator.h	/^  _RandomAccessIterator base() const { return current; }$/;"	f	class:reverse_iterator
 base	stl_iterator.h	/^  iterator_type base() const { return current; }$/;"	f	class:reverse_iterator
+basic_string	string.h	/^  basic_string(_InputIterator __f, _InputIterator __l,$/;"	f	class:basic_string
+basic_string	string.h	/^  basic_string(_Reserve_t, size_t __n,$/;"	f	class:basic_string
+basic_string	string.h	/^  basic_string(const _CharT* __f, const _CharT* __l,$/;"	f	class:basic_string
+basic_string	string.h	/^  basic_string(const _CharT* __s, size_type __n,$/;"	f	class:basic_string
+basic_string	string.h	/^  basic_string(const _CharT* __s,$/;"	f	class:basic_string
+basic_string	string.h	/^  basic_string(const basic_string& __s) : _Base(__s.get_allocator()) $/;"	f	class:basic_string
+basic_string	string.h	/^  basic_string(const basic_string& __s, size_type __pos, size_type __n = npos,$/;"	f	class:basic_string
+basic_string	string.h	/^  basic_string(size_type __n, _CharT __c,$/;"	f	class:basic_string
+basic_string	string.h	/^  explicit basic_string(const allocator_type& __a = allocator_type())$/;"	f	class:basic_string
+basic_string	string.h	/^class basic_string : private _String_base<_CharT,_Alloc> {$/;"	c
 before_begin	stl_slist.h	/^  const_iterator before_begin() const$/;"	f	class:slist
 before_begin	stl_slist.h	/^  iterator before_begin() { return iterator((_Node*) &this->_M_head); }$/;"	f	class:slist
 begin	stl_bvector.h	/^  const_iterator begin() const { return _M_start; }$/;"	f	class:__BVECTOR
@@ -1524,6 +1617,8 @@ begin	stl_tree.h	/^  const_iterator begin() const { return _M_leftmost(); }$/;"	
 begin	stl_tree.h	/^  iterator begin() { return _M_leftmost(); }$/;"	f	class:_Rb_tree
 begin	stl_vector.h	/^  const_iterator begin() const { return _M_start; }$/;"	f	class:vector
 begin	stl_vector.h	/^  iterator begin() { return _M_start; }$/;"	f	class:vector
+begin	string.h	/^  const_iterator begin() const { return _M_start; }$/;"	f	class:basic_string
+begin	string.h	/^  iterator begin()             { return _M_start; }$/;"	f	class:basic_string
 bidirectional_iterator	stl_iterator_base.h	/^template <class _Tp, class _Distance> struct bidirectional_iterator {$/;"	s
 bidirectional_iterator_tag	stl_iterator_base.h	/^struct bidirectional_iterator_tag : public forward_iterator_tag {};$/;"	s
 binary_compose	stl_function.h	/^  binary_compose(const _Operation1& __x, const _Operation2& __y, $/;"	f	class:binary_compose
@@ -1549,9 +1644,11 @@ c	stl_queue.h	/^  _Sequence c;$/;"	m	class:priority_queue
 c	stl_queue.h	/^  _Sequence c;$/;"	m	class:queue
 c	stl_stack.h	/^  _Sequence c;$/;"	m	class:stack
 c_str	ropeimpl.h	/^const _CharT* rope<_CharT,_Alloc>::c_str() const {$/;"	f	class:rope
+c_str	string.h	/^  const _CharT* c_str() const { return _M_start; }$/;"	f	class:basic_string
 capacity	stl_bvector.h	/^  size_type capacity() const {$/;"	f	class:__BVECTOR
 capacity	stl_rope.h	/^            size_type capacity() const {$/;"	f	class:rope
 capacity	stl_vector.h	/^  size_type capacity() const$/;"	f	class:vector
+capacity	string.h	/^  size_type capacity() const { return (_M_end_of_storage - _M_start) - 1; }$/;"	f	class:basic_string
 char_producer	stl_rope.h	/^class char_producer {$/;"	c
 char_traits	char_traits.h	/^__STL_TEMPLATE_NULL class char_traits<char> $/;"	c
 char_traits	char_traits.h	/^__STL_TEMPLATE_NULL class char_traits<wchar_t>$/;"	c
@@ -1578,12 +1675,18 @@ clear	stl_set.h	/^  void clear() { _M_t.clear(); }$/;"	f	class:set
 clear	stl_slist.h	/^  void clear() { this->_M_erase_after(&this->_M_head, 0); }$/;"	f	class:slist
 clear	stl_tree.h	/^  void clear() {$/;"	f	class:_Rb_tree
 clear	stl_vector.h	/^  void clear() { erase(begin(), end()); }$/;"	f	class:vector
+clear	string.h	/^  void clear() {$/;"	f	class:basic_string
 comp	stl_map.h	/^    _Compare comp;$/;"	m	class:map::value_compare
 comp	stl_multimap.h	/^    _Compare comp;$/;"	m	class:multimap::value_compare
 comp	stl_queue.h	/^  _Compare comp;$/;"	m	class:priority_queue
 compare	char_traits.h	/^  static int compare(const _CharT* __s1, const _CharT* __s2, size_t __n) {$/;"	f	class:__char_traits_base
 compare	char_traits.h	/^  static int compare(const char* __s1, const char* __s2, size_t __n) $/;"	f	class:char_traits
 compare	stl_rope.h	/^        int compare(const rope& __y) const {$/;"	f	class:rope
+compare	string.h	/^  int compare(const _CharT* __s) const {$/;"	f	class:basic_string
+compare	string.h	/^  int compare(const basic_string& __s) const $/;"	f	class:basic_string
+compare	string.h	/^  int compare(size_type __pos1, size_type __n1, const _CharT* __s) const {$/;"	f	class:basic_string
+compare	string.h	/^  int compare(size_type __pos1, size_type __n1, const _CharT* __s,$/;"	f	class:basic_string
+compare	string.h	/^  int compare(size_type __pos1, size_type __n1,$/;"	f	class:basic_string
 compose1	stl_function.h	/^compose1(const _Operation1& __fn1, const _Operation2& __fn2)$/;"	f
 compose2	stl_function.h	/^compose2(const _Operation1& __fn1, const _Operation2& __fn2, $/;"	f
 const_address	defalloc.h	/^    const_pointer const_address(const_reference x) { $/;"	f	class:allocator
@@ -1614,6 +1717,7 @@ const_iterator	stl_slist.h	/^  typedef _Slist_iterator<_Tp, const _Tp&, const _T
 const_iterator	stl_tree.h	/^          const_iterator;$/;"	t	class:_Rb_tree
 const_iterator	stl_tree.h	/^    const_iterator;$/;"	t	struct:_Rb_tree_iterator
 const_iterator	stl_vector.h	/^  typedef const value_type* const_iterator;$/;"	t	class:vector
+const_iterator	string.h	/^  typedef const value_type*                const_iterator;$/;"	t	class:basic_string
 const_mem_fun1_ref_t	stl_function.h	/^  explicit const_mem_fun1_ref_t(void (_Tp::*__pf)(_Arg) const) : _M_f(__pf) {}$/;"	f	class:const_mem_fun1_ref_t
 const_mem_fun1_ref_t	stl_function.h	/^class const_mem_fun1_ref_t : public binary_function<_Tp,_Arg,_Ret> {$/;"	c
 const_mem_fun1_ref_t	stl_function.h	/^class const_mem_fun1_ref_t<void, _Tp, _Arg>$/;"	c
@@ -1647,6 +1751,7 @@ const_pointer	stl_set.h	/^  typedef typename _Rep_type::const_pointer const_poin
 const_pointer	stl_slist.h	/^  typedef const value_type* const_pointer;$/;"	t	class:slist
 const_pointer	stl_tree.h	/^  typedef const value_type* const_pointer;$/;"	t	class:_Rb_tree
 const_pointer	stl_vector.h	/^  typedef const value_type* const_pointer;$/;"	t	class:vector
+const_pointer	string.h	/^  typedef const value_type* const_pointer;$/;"	t	class:basic_string
 const_rbegin	stl_rope.h	/^        const_reverse_iterator const_rbegin() const {$/;"	f	class:rope
 const_reference	concept_checks.h	/^__STL_TYPEDEF_REQUIREMENT(const_reference);$/;"	v
 const_reference	defalloc.h	/^    typedef const T& const_reference;$/;"	t	class:allocator
@@ -1672,6 +1777,7 @@ const_reference	stl_slist.h	/^  typedef const value_type& const_reference;$/;"	t
 const_reference	stl_stack.h	/^  typedef typename _Sequence::const_reference const_reference;$/;"	t	class:stack
 const_reference	stl_tree.h	/^  typedef const value_type& const_reference;$/;"	t	class:_Rb_tree
 const_reference	stl_vector.h	/^  typedef const value_type& const_reference;$/;"	t	class:vector
+const_reference	string.h	/^  typedef const value_type& const_reference;$/;"	t	class:basic_string
 const_rend	stl_rope.h	/^        const_reverse_iterator const_rend() const {$/;"	f	class:rope
 const_reverse_iterator	container_concepts.h	/^__STL_TYPEDEF_REQUIREMENT(const_reverse_iterator);$/;"	v
 const_reverse_iterator	stl_bvector.h	/^                           difference_type> const_reverse_iterator;$/;"	t	class:__BVECTOR
@@ -1690,6 +1796,8 @@ const_reverse_iterator	stl_tree.h	/^          const_reverse_iterator;$/;"	t	clas
 const_reverse_iterator	stl_tree.h	/^  typedef reverse_iterator<const_iterator> const_reverse_iterator;$/;"	t	class:_Rb_tree
 const_reverse_iterator	stl_vector.h	/^                           difference_type>  const_reverse_iterator;$/;"	t	class:vector
 const_reverse_iterator	stl_vector.h	/^  typedef reverse_iterator<const_iterator> const_reverse_iterator;$/;"	t	class:vector
+const_reverse_iterator	string.h	/^          const_reverse_iterator;$/;"	t	class:basic_string
+const_reverse_iterator	string.h	/^  typedef reverse_iterator<const_iterator> const_reverse_iterator;$/;"	t	class:basic_string
 constant0	stl_function.h	/^inline constant_void_fun<_Result> constant0(const _Result& __val)$/;"	f
 constant1	stl_function.h	/^inline constant_unary_fun<_Result,_Result> constant1(const _Result& __val)$/;"	f
 constant2	stl_function.h	/^constant2(const _Result& __val)$/;"	f
@@ -1728,6 +1836,7 @@ copy	stl_algobase.h	/^inline _OutputIter copy(_InputIter __first, _InputIter __l
 copy	stl_rope.h	/^              size_type copy(_CharT* __buffer, size_type __n, $/;"	f	class:rope
 copy	stl_rope.h	/^        size_type copy(size_type __pos, size_type __n, _CharT* __buffer) const $/;"	f	class:rope
 copy	stl_rope.h	/^        void copy(_CharT* __buffer) const {$/;"	f	class:rope
+copy	string.h	/^  size_type copy(_CharT* __s, size_type __n, size_type __pos = 0) const {$/;"	f	class:basic_string
 copy_backward	stl_algobase.h	/^inline _BI2 copy_backward(_BI1 __first, _BI1 __last, _BI2 __result) {$/;"	f
 copy_n	stl_algobase.h	/^copy_n(_InputIter __first, _Size __count, _OutputIter __result) {$/;"	f
 count	stl_algo.h	/^count(_InputIter __first, _InputIter __last, const _Tp& __value) {$/;"	f
@@ -1748,6 +1857,7 @@ crope	stl_rope.h	/^typedef rope<char> crope;$/;"	t
 current	stl_iterator.h	/^  _BidirectionalIterator current;$/;"	m	class:reverse_bidirectional_iterator
 current	stl_iterator.h	/^  _Iterator current;$/;"	m	class:reverse_iterator
 current	stl_iterator.h	/^  _RandomAccessIterator current;$/;"	m	class:reverse_iterator
+data	string.h	/^  const _CharT* data()  const { return _M_start; }$/;"	f	class:basic_string
 data_type	stl_hash_map.h	/^  typedef _Tp data_type;$/;"	t	class:hash_map
 data_type	stl_hash_map.h	/^  typedef _Tp data_type;$/;"	t	class:hash_multimap
 data_type	stl_map.h	/^  typedef _Tp                   data_type;$/;"	t	class:map
@@ -1826,6 +1936,7 @@ difference_type	stl_slist.h	/^  typedef void                difference_type;$/;"
 difference_type	stl_tree.h	/^  typedef ptrdiff_t difference_type;$/;"	t	class:_Rb_tree
 difference_type	stl_tree.h	/^  typedef ptrdiff_t difference_type;$/;"	t	struct:_Rb_tree_base_iterator
 difference_type	stl_vector.h	/^  typedef ptrdiff_t difference_type;$/;"	t	class:vector
+difference_type	string.h	/^  typedef ptrdiff_t difference_type;$/;"	t	class:basic_string
 distance	stl_iterator_base.h	/^distance(_InputIterator __first, _InputIterator __last) {$/;"	f
 distance	stl_iterator_base.h	/^inline void distance(_InputIterator __first, $/;"	f
 distance_type	stl_deque.h	/^inline ptrdiff_t* distance_type(const _Deque_iterator<_Tp,_Ref,_Ptr>&) {$/;"	f
@@ -1869,6 +1980,7 @@ empty	stl_slist.h	/^  bool empty() const { return this->_M_head._M_next == 0; }$
 empty	stl_stack.h	/^  bool empty() const { return c.empty(); }$/;"	f	class:stack
 empty	stl_tree.h	/^  bool empty() const { return _M_node_count == 0; }$/;"	f	class:_Rb_tree
 empty	stl_vector.h	/^  bool empty() const$/;"	f	class:vector
+empty	string.h	/^  bool empty() const { return _M_start == _M_finish; }    $/;"	f	class:basic_string
 end	stl_bvector.h	/^  const_iterator end() const { return _M_finish; }$/;"	f	class:__BVECTOR
 end	stl_bvector.h	/^  iterator end() { return _M_finish; }$/;"	f	class:__BVECTOR
 end	stl_deque.h	/^  const_iterator end() const { return _M_finish; }$/;"	f	class:deque
@@ -1899,6 +2011,8 @@ end	stl_tree.h	/^  const_iterator end() const { return _M_header; }$/;"	f	class:
 end	stl_tree.h	/^  iterator end() { return _M_header; }$/;"	f	class:_Rb_tree
 end	stl_vector.h	/^  const_iterator end() const { return _M_finish; }$/;"	f	class:vector
 end	stl_vector.h	/^  iterator end() { return _M_finish; }$/;"	f	class:vector
+end	string.h	/^  const_iterator end()   const { return _M_finish; }  $/;"	f	class:basic_string
+end	string.h	/^  iterator end()               { return _M_finish; }$/;"	f	class:basic_string
 eof	char_traits.h	/^  static int_type eof() {$/;"	f	class:__char_traits_base
 eq	char_traits.h	/^  static bool eq(const _CharT& __c1, const _CharT& __c2) $/;"	f	class:__char_traits_base
 eq_int_type	char_traits.h	/^  static bool eq_int_type(const int_type& __c1, const int_type& __c2) {$/;"	f	class:__char_traits_base
@@ -1970,6 +2084,9 @@ erase	stl_tree.h	/^  ::erase(iterator __position)$/;"	f	class:_Rb_tree
 erase	stl_tree.h	/^_Rb_tree<_Key,_Value,_KeyOfValue,_Compare,_Alloc>::erase(const _Key& __x)$/;"	f	class:_Rb_tree
 erase	stl_vector.h	/^  iterator erase(iterator __first, iterator __last) {$/;"	f	class:vector
 erase	stl_vector.h	/^  iterator erase(iterator __position) {$/;"	f	class:vector
+erase	string.h	/^  basic_string& erase(size_type __pos = 0, size_type __n = npos) {$/;"	f	class:basic_string
+erase	string.h	/^  iterator erase(iterator __first, iterator __last) {$/;"	f	class:basic_string
+erase	string.h	/^  iterator erase(iterator __position) {$/;"	f	class:basic_string
 erase_after	stl_slist.h	/^  iterator erase_after(iterator __before_first, iterator __last) {$/;"	f	class:slist
 erase_after	stl_slist.h	/^  iterator erase_after(iterator __pos) {$/;"	f	class:slist
 explicit	stl_config.h	/^#   define explicit$/;"	d
@@ -2004,10 +2121,30 @@ find	stl_rope.h	/^        size_type find(const _CharT* __s, size_type __pos = 0)
 find	stl_set.h	/^  iterator find(const key_type& __x) const { return _M_t.find(__x); }$/;"	f	class:set
 find	stl_tree.h	/^_Rb_tree<_Key,_Value,_KeyOfValue,_Compare,_Alloc>::find(const _Key& __k) const$/;"	f	class:_Rb_tree
 find	stl_tree.h	/^_Rb_tree<_Key,_Value,_KeyOfValue,_Compare,_Alloc>::find(const _Key& __k)$/;"	f	class:_Rb_tree
+find	string.h	/^  ::find(_CharT __c, size_type __pos) const $/;"	f	class:basic_string
+find	string.h	/^  ::find(const _CharT* __s, size_type __pos, size_type __n) const $/;"	f	class:basic_string
+find	string.h	/^  size_type find(const _CharT* __s, size_type __pos = 0) const $/;"	f	class:basic_string
+find	string.h	/^  size_type find(const basic_string& __s, size_type __pos = 0) const $/;"	f	class:basic_string
 find_end	stl_algo.h	/^find_end(_ForwardIter1 __first1, _ForwardIter1 __last1, $/;"	f
+find_first_not_of	string.h	/^  ::find_first_not_of(_CharT __c, size_type __pos) const$/;"	f	class:basic_string
+find_first_not_of	string.h	/^  ::find_first_not_of(const _CharT* __s, size_type __pos, size_type __n) const$/;"	f	class:basic_string
+find_first_not_of	string.h	/^  size_type find_first_not_of(const _CharT* __s, size_type __pos = 0) const $/;"	f	class:basic_string
+find_first_not_of	string.h	/^  size_type find_first_not_of(const basic_string& __s, $/;"	f	class:basic_string
 find_first_of	stl_algo.h	/^_InputIter find_first_of(_InputIter __first1, _InputIter __last1,$/;"	f
+find_first_of	string.h	/^  ::find_first_of(const _CharT* __s, size_type __pos, size_type __n) const$/;"	f	class:basic_string
+find_first_of	string.h	/^  size_type find_first_of(_CharT __c, size_type __pos = 0) const $/;"	f	class:basic_string
+find_first_of	string.h	/^  size_type find_first_of(const _CharT* __s, size_type __pos = 0) const $/;"	f	class:basic_string
+find_first_of	string.h	/^  size_type find_first_of(const basic_string& __s, size_type __pos = 0) const $/;"	f	class:basic_string
 find_if	stl_algo.h	/^_RandomAccessIter find_if(_RandomAccessIter __first, _RandomAccessIter __last,$/;"	f
 find_if	stl_algo.h	/^inline _InputIter find_if(_InputIter __first, _InputIter __last,$/;"	f
+find_last_not_of	string.h	/^  ::find_last_not_of(_Tp __c, size_type __pos) const $/;"	f	class:basic_string
+find_last_not_of	string.h	/^  ::find_last_not_of(const _CharT* __s, size_type __pos, size_type __n) const $/;"	f	class:basic_string
+find_last_not_of	string.h	/^  size_type find_last_not_of(const _CharT* __s, size_type __pos = npos) const$/;"	f	class:basic_string
+find_last_not_of	string.h	/^  size_type find_last_not_of(const basic_string& __s, $/;"	f	class:basic_string
+find_last_of	string.h	/^  ::find_last_of(const _CharT* __s, size_type __pos, size_type __n) const$/;"	f	class:basic_string
+find_last_of	string.h	/^  size_type find_last_of(_CharT __c, size_type __pos = npos) const {$/;"	f	class:basic_string
+find_last_of	string.h	/^  size_type find_last_of(const _CharT* __s, size_type __pos = npos) const $/;"	f	class:basic_string
+find_last_of	string.h	/^  size_type find_last_of(const basic_string& __s,$/;"	f	class:basic_string
 find_or_insert	stl_hashtable.h	/^hashtable<_Val,_Key,_HF,_Ex,_Eq,_All>::find_or_insert(const value_type& __obj)$/;"	f	class:hashtable
 first	stl_pair.h	/^  _T1 first;$/;"	m	struct:pair
 first_argument_type	stl_function.h	/^  typedef  _Arg1   first_argument_type;$/;"	t	struct:_Constant_binary_fun
@@ -2076,8 +2213,14 @@ get_allocator	stl_tree.h	/^  allocator_type get_allocator() const { return alloc
 get_allocator	stl_vector.h	/^  allocator_type get_allocator() const { return _Base::get_allocator(); }$/;"	f	class:vector
 get_allocator	stl_vector.h	/^  allocator_type get_allocator() const { return _M_data_allocator; }$/;"	f	class:_Vector_alloc_base
 get_allocator	stl_vector.h	/^  allocator_type get_allocator() const { return allocator_type(); }$/;"	f	class:_Vector_alloc_base
+get_allocator	string.h	/^  allocator_type get_allocator() const { return _Base::get_allocator(); }$/;"	f	class:basic_string
+get_allocator	string.h	/^  allocator_type get_allocator() const { return _M_data_allocator; }$/;"	f	class:_String_alloc_base
+get_allocator	string.h	/^  allocator_type get_allocator() const { return allocator_type(); }$/;"	f	class:_String_alloc_base
+get_allocator	string.h	/^  allocator_type get_allocator() const { return allocator_type(); }$/;"	f	class:_String_base
 get_temporary_buffer	stl_tempbuf.h	/^inline pair<_Tp*, ptrdiff_t> get_temporary_buffer(ptrdiff_t __len) {$/;"	f
 get_temporary_buffer	stl_tempbuf.h	/^inline pair<_Tp*, ptrdiff_t> get_temporary_buffer(ptrdiff_t __len, _Tp*) {$/;"	f
+getline	string.h	/^getline(basic_istream<_CharT, _Traits>& __is,$/;"	f
+getline	string.h	/^getline(istream& __is,$/;"	f
 greater	stl_function.h	/^struct greater : public binary_function<_Tp,_Tp,bool> $/;"	s
 greater_equal	stl_function.h	/^struct greater_equal : public binary_function<_Tp,_Tp,bool>$/;"	s
 has_trivial_assignment_operator	type_traits.h	/^   typedef __false_type    has_trivial_assignment_operator;$/;"	t	struct:__type_traits
@@ -2102,6 +2245,9 @@ hash	stl_hash_fun.h	/^__STL_TEMPLATE_NULL struct hash<unsigned short> {$/;"	s
 hash	stl_hash_fun.h	/^template <class _Key> struct hash { };$/;"	s
 hash	stl_rope.h	/^__STL_TEMPLATE_NULL struct hash<crope>$/;"	s
 hash	stl_rope.h	/^__STL_TEMPLATE_NULL struct hash<wrope>$/;"	s
+hash	string.h	/^__STL_TEMPLATE_NULL struct hash<string> {$/;"	s
+hash	string.h	/^__STL_TEMPLATE_NULL struct hash<wstring> {$/;"	s
+hash	string.h	/^struct hash<basic_string<_CharT,_Traits,_Alloc> > {$/;"	s
 hash_funct	stl_hash_map.h	/^  hasher hash_funct() const { return _M_ht.hash_funct(); }$/;"	f	class:hash_map
 hash_funct	stl_hash_map.h	/^  hasher hash_funct() const { return _M_ht.hash_funct(); }$/;"	f	class:hash_multimap
 hash_funct	stl_hash_set.h	/^  hasher hash_funct() const { return _M_ht.hash_funct(); }$/;"	f	class:hash_multiset
@@ -2261,6 +2407,16 @@ insert	stl_vector.h	/^  iterator insert(iterator __position, const _Tp& __x) {$/
 insert	stl_vector.h	/^  void insert (iterator __pos, size_type __n, const _Tp& __x)$/;"	f	class:vector
 insert	stl_vector.h	/^  void insert(iterator __pos, _InputIterator __first, _InputIterator __last) {$/;"	f	class:vector
 insert	stl_vector.h	/^vector<_Tp, _Alloc>::insert(iterator __position, $/;"	f	class:vector
+insert	string.h	/^  ::insert(basic_string<_CharT,_Traits,_Alloc>::iterator __position,$/;"	f	class:basic_string
+insert	string.h	/^  basic_string& insert(size_type __pos, const _CharT* __s) {$/;"	f	class:basic_string
+insert	string.h	/^  basic_string& insert(size_type __pos, const _CharT* __s, size_type __n) {$/;"	f	class:basic_string
+insert	string.h	/^  basic_string& insert(size_type __pos, const basic_string& __s) {$/;"	f	class:basic_string
+insert	string.h	/^  basic_string& insert(size_type __pos, const basic_string& __s,$/;"	f	class:basic_string
+insert	string.h	/^  basic_string& insert(size_type __pos, size_type __n, _CharT __c) {$/;"	f	class:basic_string
+insert	string.h	/^  iterator insert(iterator __p, _CharT __c) {$/;"	f	class:basic_string
+insert	string.h	/^  void insert(iterator __p, _InputIter __first, _InputIter __last) {$/;"	f	class:basic_string
+insert	string.h	/^basic_string<_CharT,_Traits,_Alloc>::insert(iterator __position,$/;"	f	class:basic_string
+insert	string.h	/^void basic_string<_Tp, _Traits, _Alloc>::insert(iterator __p,$/;"	f	class:basic_string
 insert_after	stl_slist.h	/^  iterator insert_after(iterator __pos) {$/;"	f	class:slist
 insert_after	stl_slist.h	/^  iterator insert_after(iterator __pos, const value_type& __x) {$/;"	f	class:slist
 insert_after	stl_slist.h	/^  void insert_after(iterator __pos, _InIter __first, _InIter __last) {$/;"	f	class:slist
@@ -2358,6 +2514,7 @@ iterator	stl_slist.h	/^  typedef _Slist_iterator<_Tp, _Tp&, _Tp*>             it
 iterator	stl_tree.h	/^    iterator;$/;"	t	struct:_Rb_tree_iterator
 iterator	stl_tree.h	/^  typedef _Rb_tree_iterator<value_type, reference, pointer> iterator;$/;"	t	class:_Rb_tree
 iterator	stl_vector.h	/^  typedef value_type* iterator;$/;"	t	class:vector
+iterator	string.h	/^  typedef value_type*                      iterator;$/;"	t	class:basic_string
 iterator_category	concept_checks.h	/^          iterator_category;$/;"	t	struct:__iterator_category_type_definition_requirement_violation
 iterator_category	stl_deque.h	/^  typedef random_access_iterator_tag iterator_category;$/;"	t	struct:_Deque_iterator
 iterator_category	stl_deque.h	/^iterator_category(const _Deque_iterator<_Tp,_Ref,_Ptr>&)$/;"	f
@@ -2444,6 +2601,7 @@ key_type	stl_tree.h	/^  typedef _Key key_type;$/;"	t	class:_Rb_tree
 length	char_traits.h	/^  static size_t length(const _CharT* __s) {$/;"	f	class:__char_traits_base
 length	char_traits.h	/^  static size_t length(const char* __s) { return strlen(__s); }$/;"	f	class:char_traits
 length	stl_rope.h	/^        size_type length() const {$/;"	f	class:rope
+length	string.h	/^  size_type length() const { return size(); }$/;"	f	class:basic_string
 less	stl_function.h	/^struct less : public binary_function<_Tp,_Tp,bool> $/;"	s
 less_equal	stl_function.h	/^struct less_equal : public binary_function<_Tp,_Tp,bool> $/;"	s
 lexicographical_compare	stl_algobase.h	/^bool lexicographical_compare(_InputIter1 __first1, _InputIter1 __last1,$/;"	f
@@ -2517,6 +2675,8 @@ max_size	stl_set.h	/^  size_type max_size() const { return _M_t.max_size(); }$/;
 max_size	stl_slist.h	/^  size_type max_size() const { return size_type(-1); }$/;"	f	class:slist
 max_size	stl_tree.h	/^  size_type max_size() const { return size_type(-1); }$/;"	f	class:_Rb_tree
 max_size	stl_vector.h	/^  size_type max_size() const$/;"	f	class:vector
+max_size	string.h	/^  size_t max_size() const { return (size_t(-1) \/ sizeof(_Tp)) - 1; }$/;"	f	class:_String_base
+max_size	string.h	/^  size_t max_size() const { return _Base::max_size(); }$/;"	f	class:basic_string
 mem_fun1_ref_t	stl_function.h	/^  explicit mem_fun1_ref_t(void (_Tp::*__pf)(_Arg)) : _M_f(__pf) {}$/;"	f	class:mem_fun1_ref_t
 mem_fun1_ref_t	stl_function.h	/^class mem_fun1_ref_t : public binary_function<_Tp,_Arg,_Ret> {$/;"	c
 mem_fun1_ref_t	stl_function.h	/^class mem_fun1_ref_t<void, _Tp, _Arg>$/;"	c
@@ -2579,6 +2739,8 @@ not_eof	char_traits.h	/^  static int_type not_eof(const int_type& __c) {$/;"	f	c
 not_equal_to	stl_function.h	/^struct not_equal_to : public binary_function<_Tp,_Tp,bool> $/;"	s
 npos	stl_rope.h	/^        static const size_type npos;$/;"	m	class:rope
 npos	stl_rope.h	/^const rope<_CharT, _Alloc>::size_type rope<_CharT, _Alloc>::npos =$/;"	m	class:rope
+npos	string.h	/^  static const size_type npos;$/;"	m	class:basic_string
+npos	string.h	/^basic_string<_CharT,_Traits,_Alloc>::npos $/;"	m	class:basic_string
 nth_element	stl_algo.h	/^inline void nth_element(_RandomAccessIter __first, _RandomAccessIter __nth,$/;"	f
 off_type	char_traits.h	/^  typedef streamoff off_type;$/;"	t	class:__char_traits_base
 op	stl_function.h	/^  _Operation op;$/;"	m	class:binder1st
@@ -2621,6 +2783,8 @@ operator !=	stl_stack.h	/^bool operator!=(const stack<_Tp,_Seq>& __x, const stac
 operator !=	stl_tree.h	/^inline bool operator!=(const _Rb_tree_base_iterator& __x,$/;"	f
 operator !=	stl_tree.h	/^operator!=(const _Rb_tree<_Key,_Value,_KeyOfValue,_Compare,_Alloc>& __x, $/;"	f
 operator !=	stl_vector.h	/^operator!=(const vector<_Tp, _Alloc>& __x, const vector<_Tp, _Alloc>& __y) {$/;"	f
+operator !=	string.h	/^operator!=(const _CharT* __s,$/;"	f
+operator !=	string.h	/^operator!=(const basic_string<_CharT,_Traits,_Alloc>& __x,$/;"	f
 operator &	ropeimpl.h	/^_Rope_char_ref_proxy<_CharT, _Alloc>::operator& () const {$/;"	f	class:_Rope_char_ref_proxy
 operator ()	ropeimpl.h	/^	bool operator() (const _CharT* __leaf, size_t __n) {$/;"	f	class:_Rope_find_char_char_consumer
 operator ()	ropeimpl.h	/^	bool operator() (const _CharT* __leaf, size_t __n) {$/;"	f	class:_Rope_flatten_char_consumer
@@ -2693,6 +2857,10 @@ operator ()	stl_rope.h	/^        rope<_CharT,_Alloc> operator() (const rope<_Cha
 operator ()	stl_rope.h	/^    virtual void operator()(size_t __start_pos, size_t __req_len,$/;"	f	struct:_Rope_RopeSubstring
 operator ()	stl_rope.h	/^  size_t operator()(const crope& __str) const$/;"	f	struct:hash
 operator ()	stl_rope.h	/^  size_t operator()(const wrope& __str) const$/;"	f	struct:hash
+operator ()	string.h	/^  bool operator()(const typename _Traits::char_type& __x) const {$/;"	f	struct:_Not_within_traits
+operator ()	string.h	/^  size_t operator()(const basic_string<_CharT,_Traits,_Alloc>& __s) const$/;"	f	struct:hash
+operator ()	string.h	/^  size_t operator()(const string& __s) const$/;"	f	struct:hash
+operator ()	string.h	/^  size_t operator()(const wstring& __s) const$/;"	f	struct:hash
 operator *	stl_bvector.h	/^  const_reference operator*() const {$/;"	f	struct:_Bit_const_iterator
 operator *	stl_bvector.h	/^  reference operator*() const { return reference(_M_p, 1U << _M_offset); }$/;"	f	struct:_Bit_iterator
 operator *	stl_deque.h	/^  reference operator*() const { return *_M_cur; }$/;"	f	struct:_Deque_iterator
@@ -2736,6 +2904,9 @@ operator +	stl_rope.h	/^operator+(const _Rope_const_iterator<_CharT,_Alloc>& __x
 operator +	stl_rope.h	/^operator+(const _Rope_iterator<_CharT,_Alloc>& __x,$/;"	f
 operator +	stl_rope.h	/^operator+(ptrdiff_t __n, const _Rope_const_iterator<_CharT,_Alloc>& __x) {$/;"	f
 operator +	stl_rope.h	/^operator+(ptrdiff_t __n, const _Rope_iterator<_CharT,_Alloc>& __x) {$/;"	f
+operator +	string.h	/^operator+(_CharT __c,$/;"	f
+operator +	string.h	/^operator+(const _CharT* __s,$/;"	f
+operator +	string.h	/^operator+(const basic_string<_CharT,_Traits,_Alloc>& __x,$/;"	f
 operator ++	stl_bvector.h	/^  const_iterator operator++(int) {$/;"	f	struct:_Bit_const_iterator
 operator ++	stl_bvector.h	/^  const_iterator& operator++() {$/;"	f	struct:_Bit_const_iterator
 operator ++	stl_bvector.h	/^  iterator operator++(int) {$/;"	f	struct:_Bit_iterator
@@ -2796,6 +2967,9 @@ operator +=	stl_rope.h	/^    _Rope_iterator& operator+=(ptrdiff_t __n) {$/;"	f	c
 operator +=	stl_rope.h	/^operator+= (rope<_CharT,_Alloc>& __left, $/;"	f
 operator +=	stl_rope.h	/^operator+= (rope<_CharT,_Alloc>& __left, _CharT __right) {$/;"	f
 operator +=	stl_rope.h	/^operator+= (rope<_CharT,_Alloc>& __left,$/;"	f
+operator +=	string.h	/^  basic_string& operator+=(_CharT __c) { push_back(__c); return *this; }$/;"	f	class:basic_string
+operator +=	string.h	/^  basic_string& operator+=(const _CharT* __s) { return append(__s); }$/;"	f	class:basic_string
+operator +=	string.h	/^  basic_string& operator+=(const basic_string& __s) { return append(__s); }$/;"	f	class:basic_string
 operator -	stl_bvector.h	/^  const_iterator operator-(difference_type __i) const {$/;"	f	struct:_Bit_const_iterator
 operator -	stl_bvector.h	/^  iterator operator-(difference_type __i) const {$/;"	f	struct:_Bit_iterator
 operator -	stl_bvector.h	/^operator-(const _Bit_iterator_base& __x, const _Bit_iterator_base& __y) {$/;"	f
@@ -2865,7 +3039,10 @@ operator <	stl_slist.h	/^operator<(const slist<_Tp,_Alloc>& _SL1, const slist<_T
 operator <	stl_stack.h	/^bool operator<(const stack<_Tp,_Seq>& __x, const stack<_Tp,_Seq>& __y)$/;"	f
 operator <	stl_tree.h	/^operator<(const _Rb_tree<_Key,_Value,_KeyOfValue,_Compare,_Alloc>& __x, $/;"	f
 operator <	stl_vector.h	/^operator<(const vector<_Tp, _Alloc>& __x, const vector<_Tp, _Alloc>& __y)$/;"	f
+operator <	string.h	/^operator<(const _CharT* __s,$/;"	f
+operator <	string.h	/^operator<(const basic_string<_CharT,_Traits,_Alloc>& __x,$/;"	f
 operator <<	ropeimpl.h	/^  basic_ostream<_CharT, _Traits>& operator<<$/;"	f
+operator <<	string.h	/^operator<<(basic_ostream<_CharT, _Traits>& __os, $/;"	f
 operator <=	stl_bvector.h	/^  bool operator<=(const _Bit_iterator_base& __i) const {$/;"	f	struct:_Bit_iterator_base
 operator <=	stl_bvector.h	/^inline bool operator<=(const bit_vector& __x, const bit_vector& __y)$/;"	f
 operator <=	stl_deque.h	/^  bool operator<=(const _Self& __x) const { return !(__x < *this); }$/;"	f	struct:_Deque_iterator
@@ -2887,6 +3064,8 @@ operator <=	stl_slist.h	/^operator<=(const slist<_Tp,_Alloc>& _SL1, const slist<
 operator <=	stl_stack.h	/^bool operator<=(const stack<_Tp,_Seq>& __x, const stack<_Tp,_Seq>& __y)$/;"	f
 operator <=	stl_tree.h	/^operator<=(const _Rb_tree<_Key,_Value,_KeyOfValue,_Compare,_Alloc>& __x, $/;"	f
 operator <=	stl_vector.h	/^operator<=(const vector<_Tp, _Alloc>& __x, const vector<_Tp, _Alloc>& __y) {$/;"	f
+operator <=	string.h	/^operator<=(const _CharT* __s,$/;"	f
+operator <=	string.h	/^operator<=(const basic_string<_CharT,_Traits,_Alloc>& __x,$/;"	f
 operator =	ropeimpl.h	/^_Rope_char_ref_proxy<_CharT, _Alloc>::operator= (_CharT __c) {$/;"	f	class:_Rope_char_ref_proxy
 operator =	stl_bvector.h	/^  _Bit_reference& operator=(bool __x)$/;"	f	struct:_Bit_reference
 operator =	stl_bvector.h	/^  _Bit_reference& operator=(const _Bit_reference& __x) $/;"	f	struct:_Bit_reference
@@ -2920,6 +3099,9 @@ operator =	stl_slist.h	/^slist<_Tp,_Alloc>& slist<_Tp,_Alloc>::operator=(const s
 operator =	stl_tempbuf.h	/^  void operator=(const _Temporary_buffer&) {}$/;"	f	class:_Temporary_buffer
 operator =	stl_tree.h	/^  ::operator=(const _Rb_tree<_Key,_Value,_KeyOfValue,_Compare,_Alloc>& __x)$/;"	f	class:_Rb_tree
 operator =	stl_vector.h	/^vector<_Tp,_Alloc>::operator=(const vector<_Tp, _Alloc>& __x)$/;"	f	class:vector
+operator =	string.h	/^  basic_string& operator=(_CharT __c)$/;"	f	class:basic_string
+operator =	string.h	/^  basic_string& operator=(const _CharT* __s) $/;"	f	class:basic_string
+operator =	string.h	/^  basic_string& operator=(const basic_string& __s) {$/;"	f	class:basic_string
 operator ==	stl_alloc.h	/^inline bool operator==(const __default_alloc_template<__threads, __inst>&,$/;"	f
 operator ==	stl_alloc.h	/^inline bool operator==(const allocator<_T1>&, const allocator<_T2>&) $/;"	f
 operator ==	stl_bvector.h	/^  bool operator==(const _Bit_iterator_base& __i) const {$/;"	f	struct:_Bit_iterator_base
@@ -2958,6 +3140,8 @@ operator ==	stl_stack.h	/^bool operator==(const stack<_Tp,_Seq>& __x, const stac
 operator ==	stl_tree.h	/^inline bool operator==(const _Rb_tree_base_iterator& __x,$/;"	f
 operator ==	stl_tree.h	/^operator==(const _Rb_tree<_Key,_Value,_KeyOfValue,_Compare,_Alloc>& __x, $/;"	f
 operator ==	stl_vector.h	/^operator==(const vector<_Tp, _Alloc>& __x, const vector<_Tp, _Alloc>& __y)$/;"	f
+operator ==	string.h	/^operator==(const _CharT* __s,$/;"	f
+operator ==	string.h	/^operator==(const basic_string<_CharT,_Traits,_Alloc>& __x,$/;"	f
 operator >	stl_bvector.h	/^  bool operator>(const _Bit_iterator_base& __i) const {$/;"	f	struct:_Bit_iterator_base
 operator >	stl_bvector.h	/^inline bool operator>(const bit_vector& __x, const bit_vector& __y)$/;"	f
 operator >	stl_deque.h	/^  bool operator>(const _Self& __x) const  { return __x < *this; }$/;"	f	struct:_Deque_iterator
@@ -2979,6 +3163,8 @@ operator >	stl_slist.h	/^operator>(const slist<_Tp,_Alloc>& _SL1, const slist<_T
 operator >	stl_stack.h	/^bool operator>(const stack<_Tp,_Seq>& __x, const stack<_Tp,_Seq>& __y)$/;"	f
 operator >	stl_tree.h	/^operator>(const _Rb_tree<_Key,_Value,_KeyOfValue,_Compare,_Alloc>& __x, $/;"	f
 operator >	stl_vector.h	/^operator>(const vector<_Tp, _Alloc>& __x, const vector<_Tp, _Alloc>& __y) {$/;"	f
+operator >	string.h	/^operator>(const _CharT* __s,$/;"	f
+operator >	string.h	/^operator>(const basic_string<_CharT,_Traits,_Alloc>& __x,$/;"	f
 operator >=	stl_bvector.h	/^  bool operator>=(const _Bit_iterator_base& __i) const {$/;"	f	struct:_Bit_iterator_base
 operator >=	stl_bvector.h	/^inline bool operator>=(const bit_vector& __x, const bit_vector& __y)$/;"	f
 operator >=	stl_deque.h	/^  bool operator>=(const _Self& __x) const { return !(*this < __x); }$/;"	f	struct:_Deque_iterator
@@ -3000,6 +3186,9 @@ operator >=	stl_slist.h	/^operator>=(const slist<_Tp,_Alloc>& _SL1, const slist<
 operator >=	stl_stack.h	/^bool operator>=(const stack<_Tp,_Seq>& __x, const stack<_Tp,_Seq>& __y)$/;"	f
 operator >=	stl_tree.h	/^operator>=(const _Rb_tree<_Key,_Value,_KeyOfValue,_Compare,_Alloc>& __x, $/;"	f
 operator >=	stl_vector.h	/^operator>=(const vector<_Tp, _Alloc>& __x, const vector<_Tp, _Alloc>& __y) {$/;"	f
+operator >=	string.h	/^operator>=(const _CharT* __s,$/;"	f
+operator >=	string.h	/^operator>=(const basic_string<_CharT,_Traits,_Alloc>& __x,$/;"	f
+operator >>	string.h	/^operator>>(basic_istream<_CharT, _Traits>& __is,$/;"	f
 operator []	stl_bvector.h	/^  const_reference operator[](difference_type __i) { $/;"	f	struct:_Bit_const_iterator
 operator []	stl_bvector.h	/^  const_reference operator[](size_type __n) const$/;"	f	class:__BVECTOR
 operator []	stl_bvector.h	/^  reference operator[](difference_type __i) { return *(*this + __i); }$/;"	f	struct:_Bit_iterator
@@ -3017,6 +3206,8 @@ operator []	stl_rope.h	/^    reference operator[](ptrdiff_t __n) {$/;"	f	class:_
 operator []	stl_rope.h	/^    reference operator[](size_t __n) {$/;"	f	class:_Rope_const_iterator
 operator []	stl_vector.h	/^  const_reference operator[](size_type __n) const { return *(begin() + __n); }$/;"	f	class:vector
 operator []	stl_vector.h	/^  reference operator[](size_type __n) { return *(begin() + __n); }$/;"	f	class:vector
+operator []	string.h	/^  const_reference operator[](size_type __n) const$/;"	f	class:basic_string
+operator []	string.h	/^  reference operator[](size_type __n)$/;"	f	class:basic_string
 operator _CharT	ropeimpl.h	/^inline _Rope_char_ref_proxy<_CharT, _Alloc>::operator _CharT () const$/;"	f	class:_Rope_char_ref_proxy
 operator _Rope_RopeRep<_CharT,_Alloc>*	stl_rope.h	/^    operator _Rope_RopeRep<_CharT,_Alloc>*() { return _M_ptr; }$/;"	f	struct:_Rope_self_destruct_ptr
 operator bool	stl_bvector.h	/^  operator bool() const { return !(!(*_M_p & _M_mask)); }$/;"	f	struct:_Bit_reference
@@ -3099,6 +3290,7 @@ pointer	stl_slist.h	/^  typedef void                pointer;$/;"	t	class:insert_
 pointer	stl_tree.h	/^  typedef _Ptr pointer;$/;"	t	struct:_Rb_tree_iterator
 pointer	stl_tree.h	/^  typedef value_type* pointer;$/;"	t	class:_Rb_tree
 pointer	stl_vector.h	/^  typedef value_type* pointer;$/;"	t	class:vector
+pointer	string.h	/^  typedef value_type* pointer;$/;"	t	class:basic_string
 pointer_to_binary_function	stl_function.h	/^    explicit pointer_to_binary_function(_Result (*__x)(_Arg1, _Arg2)) $/;"	f	class:pointer_to_binary_function
 pointer_to_binary_function	stl_function.h	/^    pointer_to_binary_function() {}$/;"	f	class:pointer_to_binary_function
 pointer_to_binary_function	stl_function.h	/^class pointer_to_binary_function : $/;"	c
@@ -3113,6 +3305,7 @@ pop_back	stl_deque.h	/^  void pop_back() {$/;"	f	class:deque
 pop_back	stl_list.h	/^  void pop_back() { $/;"	f	class:list
 pop_back	stl_rope.h	/^        void pop_back()$/;"	f	class:rope
 pop_back	stl_vector.h	/^  void pop_back() {$/;"	f	class:vector
+pop_back	string.h	/^  void pop_back() {$/;"	f	class:basic_string
 pop_front	stl_deque.h	/^  void pop_front() {$/;"	f	class:deque
 pop_front	stl_list.h	/^  void pop_front() { erase(begin()); }$/;"	f	class:list
 pop_front	stl_rope.h	/^        void pop_front()$/;"	f	class:rope
@@ -3151,6 +3344,7 @@ push_back	stl_rope.h	/^        void push_back(_CharT __x)$/;"	f	class:rope
 push_back	stl_rope.h	/^        void push_back(value_type __x)$/;"	f	class:sequence_buffer
 push_back	stl_vector.h	/^  void push_back() {$/;"	f	class:vector
 push_back	stl_vector.h	/^  void push_back(const _Tp& __x) {$/;"	f	class:vector
+push_back	string.h	/^  void push_back(_CharT __c) {$/;"	f	class:basic_string
 push_front	stl_deque.h	/^  void push_front() {$/;"	f	class:deque
 push_front	stl_deque.h	/^  void push_front(const value_type& __t) {$/;"	f	class:deque
 push_front	stl_list.h	/^  void push_front() {insert(begin());}$/;"	f	class:list
@@ -3193,6 +3387,8 @@ rbegin	stl_tree.h	/^  const_reverse_iterator rbegin() const { $/;"	f	class:_Rb_t
 rbegin	stl_tree.h	/^  reverse_iterator rbegin() { return reverse_iterator(end()); }$/;"	f	class:_Rb_tree
 rbegin	stl_vector.h	/^  const_reverse_iterator rbegin() const$/;"	f	class:vector
 rbegin	stl_vector.h	/^  reverse_iterator rbegin()$/;"	f	class:vector
+rbegin	string.h	/^  const_reverse_iterator rbegin() const $/;"	f	class:basic_string
+rbegin	string.h	/^  reverse_iterator rbegin()             $/;"	f	class:basic_string
 reallocate	stl_alloc.h	/^  static void* reallocate(void* __p, size_t \/* old_sz *\/, size_t __new_sz)$/;"	f	class:__malloc_alloc_template
 reallocate	stl_alloc.h	/^  static void* reallocate(void* __p, size_t __old_sz, size_t __new_sz)$/;"	f	class:debug_alloc
 reallocate	stl_alloc.h	/^__default_alloc_template<threads, inst>::reallocate(void* __p,$/;"	f	class:__default_alloc_template
@@ -3255,6 +3451,7 @@ reference	stl_stack.h	/^  typedef typename _Sequence::reference       reference;
 reference	stl_tree.h	/^  typedef _Ref reference;$/;"	t	struct:_Rb_tree_iterator
 reference	stl_tree.h	/^  typedef value_type& reference;$/;"	t	class:_Rb_tree
 reference	stl_vector.h	/^  typedef value_type& reference;$/;"	t	class:vector
+reference	string.h	/^  typedef value_type& reference;$/;"	t	class:basic_string
 remove	stl_algo.h	/^_ForwardIter remove(_ForwardIter __first, _ForwardIter __last,$/;"	f
 remove	stl_list.h	/^void list<_Tp, _Alloc>::remove(const _Tp& __value)$/;"	f	class:list
 remove	stl_slist.h	/^void slist<_Tp,_Alloc>::remove(const _Tp& __val)$/;"	f	class:slist
@@ -3282,6 +3479,8 @@ rend	stl_tree.h	/^  const_reverse_iterator rend() const { $/;"	f	class:_Rb_tree
 rend	stl_tree.h	/^  reverse_iterator rend() { return reverse_iterator(begin()); }$/;"	f	class:_Rb_tree
 rend	stl_vector.h	/^  const_reverse_iterator rend() const$/;"	f	class:vector
 rend	stl_vector.h	/^  reverse_iterator rend()$/;"	f	class:vector
+rend	string.h	/^  const_reverse_iterator rend()   const $/;"	f	class:basic_string
+rend	string.h	/^  reverse_iterator rend()               $/;"	f	class:basic_string
 replace	stl_algo.h	/^void replace(_ForwardIter __first, _ForwardIter __last,$/;"	f
 replace	stl_rope.h	/^        static _RopeRep* replace(_RopeRep* __old, size_t __pos1,$/;"	f	class:rope
 replace	stl_rope.h	/^        void replace(const iterator& __p, _CharT __c)$/;"	f	class:rope
@@ -3305,6 +3504,14 @@ replace	stl_rope.h	/^        void replace(size_t __p, size_t __n, _CharT __c) {$
 replace	stl_rope.h	/^        void replace(size_t __p, size_t __n, const _CharT* __c_string) {$/;"	f	class:rope
 replace	stl_rope.h	/^        void replace(size_t __p, size_t __n, const rope& __r) {$/;"	f	class:rope
 replace	stl_rope.h	/^        void replace(size_t __p, size_t __n,$/;"	f	class:rope
+replace	string.h	/^  ::replace(iterator __first, iterator __last, _InputIter __f, _InputIter __l,$/;"	f	class:basic_string
+replace	string.h	/^  ::replace(iterator __first, iterator __last, size_type __n, _CharT __c)$/;"	f	class:basic_string
+replace	string.h	/^  ::replace(iterator __first, iterator __last,$/;"	f	class:basic_string
+replace	string.h	/^  basic_string& replace(iterator __first, iterator __last, $/;"	f	class:basic_string
+replace	string.h	/^  basic_string& replace(iterator __first, iterator __last,$/;"	f	class:basic_string
+replace	string.h	/^  basic_string& replace(size_type __pos, size_type __n, $/;"	f	class:basic_string
+replace	string.h	/^  basic_string& replace(size_type __pos, size_type __n1,$/;"	f	class:basic_string
+replace	string.h	/^  basic_string& replace(size_type __pos1, size_type __n1,$/;"	f	class:basic_string
 replace_copy	stl_algo.h	/^_OutputIter replace_copy(_InputIter __first, _InputIter __last,$/;"	f
 replace_copy_if	stl_algo.h	/^_OutputIter replace_copy_if(_InputIter __first, _InputIter __last,$/;"	f
 replace_if	stl_algo.h	/^void replace_if(_ForwardIter __first, _ForwardIter __last,$/;"	f
@@ -3313,6 +3520,7 @@ requested_size	stl_tempbuf.h	/^  ptrdiff_t requested_size() const { return _M_or
 reserve	stl_bvector.h	/^  void reserve(size_type __n) {$/;"	f	class:__BVECTOR
 reserve	stl_rope.h	/^            void reserve(size_type __res_arg = 0) {}$/;"	f	class:rope
 reserve	stl_vector.h	/^  void reserve(size_type __n) {$/;"	f	class:vector
+reserve	string.h	/^void basic_string<_CharT,_Traits,_Alloc>::reserve(size_type __res_arg) {$/;"	f	class:basic_string
 resize	stl_bvector.h	/^  void resize(size_type __new_size, bool __x = bool()) {$/;"	f	class:__BVECTOR
 resize	stl_deque.h	/^  void resize(size_type __new_size, const value_type& __x) {$/;"	f	class:deque
 resize	stl_deque.h	/^  void resize(size_type new_size) { resize(new_size, value_type()); }$/;"	f	class:deque
@@ -3329,6 +3537,8 @@ resize	stl_slist.h	/^  void resize(size_type new_size) { resize(new_size, _Tp())
 resize	stl_slist.h	/^void slist<_Tp,_Alloc>::resize(size_type __len, const _Tp& __x)$/;"	f	class:slist
 resize	stl_vector.h	/^  void resize(size_type __new_size) { resize(__new_size, _Tp()); }$/;"	f	class:vector
 resize	stl_vector.h	/^  void resize(size_type __new_size, const _Tp& __x) {$/;"	f	class:vector
+resize	string.h	/^  void resize(size_type __n) { resize(__n, _M_null()); }$/;"	f	class:basic_string
+resize	string.h	/^  void resize(size_type __n, _CharT __c) {$/;"	f	class:basic_string
 result_type	stl_function.h	/^  typedef  _Result  result_type;$/;"	t	struct:_Constant_unary_fun
 result_type	stl_function.h	/^  typedef  _Result result_type;$/;"	t	struct:_Constant_binary_fun
 result_type	stl_function.h	/^  typedef _Result result_type;$/;"	t	struct:_Constant_void_fun
@@ -3366,6 +3576,12 @@ reverse_iterator	stl_tree.h	/^          reverse_iterator; $/;"	t	class:_Rb_tree
 reverse_iterator	stl_tree.h	/^  typedef reverse_iterator<iterator> reverse_iterator;$/;"	t	class:_Rb_tree
 reverse_iterator	stl_vector.h	/^          reverse_iterator;$/;"	t	class:vector
 reverse_iterator	stl_vector.h	/^  typedef reverse_iterator<iterator> reverse_iterator;$/;"	t	class:vector
+reverse_iterator	string.h	/^          reverse_iterator; $/;"	t	class:basic_string
+reverse_iterator	string.h	/^  typedef reverse_iterator<iterator>       reverse_iterator;$/;"	t	class:basic_string
+rfind	string.h	/^  ::rfind(_CharT __c, size_type __pos) const $/;"	f	class:basic_string
+rfind	string.h	/^  ::rfind(const _CharT* __s, size_type __pos, size_type __n) const $/;"	f	class:basic_string
+rfind	string.h	/^  size_type rfind(const _CharT* __s, size_type __pos = npos) const $/;"	f	class:basic_string
+rfind	string.h	/^  size_type rfind(const basic_string& __s, size_type __pos = npos) const $/;"	f	class:basic_string
 rope	ropeimpl.h	/^rope<_CharT, _Alloc>::rope(size_t __n, _CharT __c,$/;"	f	class:rope
 rope	stl_rope.h	/^        rope(_CharT __c, const allocator_type& __a = allocator_type())$/;"	f	class:rope
 rope	stl_rope.h	/^        rope(_RopeRep* __t, const allocator_type& __a = allocator_type())$/;"	f	class:rope
@@ -3431,6 +3647,7 @@ size	stl_stack.h	/^  size_type size() const { return c.size(); }$/;"	f	class:sta
 size	stl_tempbuf.h	/^  ptrdiff_t size() const { return _M_len; }$/;"	f	class:_Temporary_buffer
 size	stl_tree.h	/^  size_type size() const { return _M_node_count; }$/;"	f	class:_Rb_tree
 size	stl_vector.h	/^  size_type size() const$/;"	f	class:vector
+size	string.h	/^  size_type size() const { return _M_finish - _M_start; }$/;"	f	class:basic_string
 size_type	concept_checks.h	/^__STL_TYPEDEF_REQUIREMENT(size_type);$/;"	v
 size_type	defalloc.h	/^    typedef size_t size_type;$/;"	t	class:allocator
 size_type	stl_alloc.h	/^  typedef size_t      size_type;$/;"	t	class:allocator
@@ -3460,6 +3677,7 @@ size_type	stl_slist.h	/^  typedef size_t            size_type;$/;"	t	class:slist
 size_type	stl_stack.h	/^  typedef typename _Sequence::size_type       size_type;$/;"	t	class:stack
 size_type	stl_tree.h	/^  typedef size_t size_type;$/;"	t	class:_Rb_tree
 size_type	stl_vector.h	/^  typedef size_t size_type;$/;"	t	class:vector
+size_type	string.h	/^  typedef size_t size_type;$/;"	t	class:basic_string
 slist	stl_slist.h	/^  explicit slist(const allocator_type& __a = allocator_type()) : _Base(__a) {}$/;"	f	class:slist
 slist	stl_slist.h	/^  explicit slist(size_type __n) : _Base(allocator_type())$/;"	f	class:slist
 slist	stl_slist.h	/^  slist(_InputIterator __first, _InputIterator __last,$/;"	f	class:slist
@@ -3499,6 +3717,7 @@ substr	stl_rope.h	/^        rope substr(iterator __start) const {$/;"	f	class:ro
 substr	stl_rope.h	/^        rope substr(iterator __start, iterator __end) const {$/;"	f	class:rope
 substr	stl_rope.h	/^        rope substr(size_t __start, size_t __len = 1) const {$/;"	f	class:rope
 substr	stl_rope.h	/^        rope<_CharT,_Alloc> substr(const_iterator __start) {$/;"	f	class:rope
+substr	string.h	/^  basic_string substr(size_type __pos = 0, size_type __n = npos) const {$/;"	f	class:basic_string
 subtractive_rng	stl_function.h	/^  subtractive_rng() { _M_initialize(161803398u); }$/;"	f	class:subtractive_rng
 subtractive_rng	stl_function.h	/^  subtractive_rng(unsigned int __seed) { _M_initialize(__seed); }$/;"	f	class:subtractive_rng
 subtractive_rng	stl_function.h	/^class subtractive_rng : public unary_function<unsigned int, unsigned int> {$/;"	c
@@ -3539,6 +3758,8 @@ swap	stl_tree.h	/^  void swap(_Rb_tree<_Key,_Value,_KeyOfValue,_Compare,_Alloc>&
 swap	stl_tree.h	/^swap(_Rb_tree<_Key,_Value,_KeyOfValue,_Compare,_Alloc>& __x, $/;"	f
 swap	stl_vector.h	/^  void swap(vector<_Tp, _Alloc>& __x) {$/;"	f	class:vector
 swap	stl_vector.h	/^inline void swap(vector<_Tp, _Alloc>& __x, vector<_Tp, _Alloc>& __y)$/;"	f
+swap	string.h	/^  void swap(basic_string& __s) {$/;"	f	class:basic_string
+swap	string.h	/^inline void swap(basic_string<_CharT,_Traits,_Alloc>& __x,$/;"	f
 swap_ranges	stl_algo.h	/^_ForwardIter2 swap_ranges(_ForwardIter1 __first1, _ForwardIter1 __last1,$/;"	f
 temporary_buffer	stl_tempbuf.h	/^  temporary_buffer(_ForwardIterator __first, _ForwardIterator __last)$/;"	f	struct:temporary_buffer
 temporary_buffer	stl_tempbuf.h	/^struct temporary_buffer : public _Temporary_buffer<_ForwardIterator, _Tp>$/;"	s
@@ -3554,6 +3775,7 @@ traits_type	stl_iterator.h	/^  typedef _Traits                          traits_t
 traits_type	stl_iterator.h	/^  typedef _Traits                          traits_type;$/;"	t	class:ostreambuf_iterator
 traits_type	stl_iterator.h	/^  typedef _Traits                        traits_type;$/;"	t	class:istream_iterator
 traits_type	stl_iterator.h	/^  typedef _Traits                        traits_type;$/;"	t	class:ostream_iterator
+traits_type	string.h	/^  typedef _Traits traits_type;$/;"	t	class:basic_string
 transfer	stl_list.h	/^  void transfer(iterator __position, iterator __first, iterator __last) {$/;"	f	class:list
 transform	stl_algo.h	/^_OutputIter transform(_InputIter __first, _InputIter __last,$/;"	f
 transform	stl_algo.h	/^_OutputIter transform(_InputIter1 __first1, _InputIter1 __last1,$/;"	f
@@ -3667,6 +3889,7 @@ value_type	stl_tree.h	/^  typedef _Value value_type;$/;"	t	class:_Rb_tree
 value_type	stl_tree.h	/^  typedef _Value value_type;$/;"	t	struct:_Rb_tree_iterator
 value_type	stl_tree.h	/^inline _Value* value_type(const _Rb_tree_iterator<_Value, _Ref, _Ptr>&) {$/;"	f
 value_type	stl_vector.h	/^  typedef _Tp value_type;$/;"	t	class:vector
+value_type	string.h	/^  typedef _CharT value_type;$/;"	t	class:basic_string
 vector	stl_vector.h	/^  explicit vector(const allocator_type& __a = allocator_type())$/;"	f	class:vector
 vector	stl_vector.h	/^  explicit vector(size_type __n)$/;"	f	class:vector
 vector	stl_vector.h	/^  vector(_InputIterator __first, _InputIterator __last,$/;"	f	class:vector
@@ -3697,9 +3920,11 @@ wstring	stl_string_fwd.h	/^typedef basic_string<wchar_t> wstring;$/;"	t
 ~_STL_auto_lock	stl_threads.h	/^  ~_STL_auto_lock() { _M_lock._M_release_lock(); }$/;"	f	struct:_STL_auto_lock
 ~_Slist_base	stl_slist.h	/^  ~_Slist_base() { _M_erase_after(&_M_head, 0); }$/;"	f	struct:_Slist_base
 ~_Slist_base	stl_slist.h	/^  ~_Slist_base() { _M_erase_after(&this->_M_head, 0); }$/;"	f	struct:_Slist_base
+~_String_base	string.h	/^  ~_String_base() { _M_deallocate_block(); }$/;"	f	class:_String_base
 ~_Temporary_buffer	stl_tempbuf.h	/^  ~_Temporary_buffer() {  $/;"	f	class:_Temporary_buffer
 ~_Vector_base	stl_vector.h	/^  ~_Vector_base() { _M_deallocate(_M_start, _M_end_of_storage - _M_start); }$/;"	f	struct:_Vector_base
 ~__VECTOR	stl_bvector.h	/^  ~__VECTOR() { }$/;"	f	class:__BVECTOR
+~basic_string	string.h	/^  ~basic_string() { destroy(_M_start, _M_finish + 1); }$/;"	f	class:basic_string
 ~char_producer	stl_rope.h	/^        virtual ~char_producer() {};$/;"	f	class:char_producer
 ~deque	stl_deque.h	/^  ~deque() { destroy(_M_start, _M_finish); }$/;"	f	class:deque
 ~hashtable	stl_hashtable.h	/^  ~hashtable() { clear(); }$/;"	f	class:hashtable
